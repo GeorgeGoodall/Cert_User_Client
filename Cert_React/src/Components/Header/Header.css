@@ -1,0 +1,129 @@
+.header {
+	background-color: #7E8287;
+	color: white;
+	padding: 0px 0px;
+}
+
+.pathLink {
+	float: left;
+	color: rgba(17, 17, 17, 0.76);
+}
+
+.pathLink a {
+	color: white;
+}
+
+.pathLink a:hover {
+	color: lightgray;
+	text-shadow: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #96042A, 0 0 1px #96042A, 0 0 1px #96042A, 0 0 1px #96042A, 0 0 1px #96042A;
+	-webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.logo {
+	width: 120px;
+	padding: 20px;
+}
+
+.siteTitle {
+	margin: 10px 0px;
+}
+
+.pageTitle {
+	margin: 0px;
+	padding: 0 0 5px 5px;
+}
+
+.navDropDownButton {
+	display: none;
+	position: absolute;
+	padding: 5px;
+	top: 0px;
+	right: 0px;
+	width: 40px;
+	height: 40px;
+	background-color: red;
+}
+
+.navDropDown {
+	display: hidden;
+}
+
+.active {
+	display: block;
+}
+
+.inActive {
+	display: none;
+}
+
+.headerActive {
+	background-color: #65656A;
+	color: white;
+	padding: 0;
+}
+.navDropDownButtonInActive {
+
+}
+
+.banner {
+	display: flex;
+}
+
+
+@media only screen and (max-width: 600px) {
+	.banner {
+		display: none;
+	}
+
+	.navArea {
+		display: none;
+	}
+
+	.navDropDown {
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	.header {
+		padding: 0px;
+	}
+	.siteTitle {
+		font-size: 20px;
+	}
+	.pageTitle {
+		font-size: 18px;
+	}
+	.logo {
+		width: 80px;
+		padding: 6px;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.siteTitle {
+		font-size: 18px;
+	}
+	.pageTitle {
+		font-size: 16px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.siteTitle {
+		font-size: 16px;
+		margin-bottom: 5px;
+	}
+	.pageTitle {
+		font-size: 14px;
+	}
+	.logo {
+		padding: 6px;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	
+}

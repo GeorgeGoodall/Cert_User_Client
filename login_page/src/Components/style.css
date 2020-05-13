@@ -1,0 +1,166 @@
+.dropdownContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.languageSetting {
+    justify-content: center;
+}
+
+.floatsRight {
+    float: right;
+}
+
+.dropdown {
+    width: fit-content;
+    
+}
+
+.dropdownLable {
+    padding: 10px;
+
+}
+
+.rightValue {
+    width: 50%;
+    padding: 1px;
+}
+
+.noBorder {
+    padding: 1px 9px;
+}
+
+.loginArea {
+    border: solid 2px gray;
+    border-radius: 5px;
+    background-color: white;
+    
+    padding: 20px;
+    width: 1000px;
+    overflow: auto;
+    margin: 5px;
+}
+
+.loginArea h1 {
+    font-size: 20px;
+    margin-top: 0px;
+}
+
+.loginMain {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    float: right;
+    width: 20%;
+    margin: 5px 0px 0px 80%;
+}
+
+.LoginFeedback {
+    width: 70%;
+    margin: 5px 30% 0px 0px;
+    float: right;
+}
+
+.redText {
+    color: rgb(215,54,72);
+}
+
+.LoginArea_Header {
+    float: left;
+}
+
+.userLogin {
+    float: left;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.tabs {
+    border-bottom: dashed black 1px;
+    margin-bottom: 25px;
+    float: left;
+    width: 100%;
+}
+
+.tabButton {
+    float: left;
+    padding: 5px 10px;
+    color: rgb(50, 50, 50);
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.tabButton:hover {
+    opacity: 1;
+}
+
+.selected {
+    color: black;
+    opacity: 1;
+    font-weight: bold;
+}
+
+.userControls {
+    margin-top: 15px;
+    float: left;
+}
+
+.userAgreement {
+    position: absolute;
+    inset: 4vw;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+    overflow: auto;
+    border-radius: 4px;
+    outline: currentcolor none medium;
+    padding: 2vw;
+
+    font-size: 1vw;
+}
+
+.userAgreement h1 {
+    font-size: 2vw;
+}
+
+.modalCloseButton {
+    width: 40px;
+    height: 40px;
+    float: right;
+}
+
+.modalCloseButton:hover {
+    color: rgb(215,54,72);
+}
+
+.red-button {
+    padding: 5px;
+    margin: 5px;
+    float: left;
+    background-color: rgb(215,54,72);
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.red-button:hover {
+    background-color: rgb(223, 126, 137);
+    color: black;
+}
+
+.institutionControlsTab {
+    float: left;
+    width: 100%;
+}
+

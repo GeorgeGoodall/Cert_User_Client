@@ -1,0 +1,36 @@
+.alert {
+	position: absolute;
+	top: 5%;
+	left: 10%;
+	z-index: 20;
+	width: 80%;
+	opacity: 1 !important;
+}
+
+.hidden {
+	display: none;
+}
+
+.closeButton {
+	font-size: 80px;
+	z-index: 40;
+	color: black;
+	position: absolute;
+	top: 2%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: white;
+	border-radius: 40px;
+	transition: ease-out 0.2s;
+}
+
+.closeButton:hover {
+	color: red;
+	background-color: white;
+}
+
+@media only screen and (max-width: 600px) {
+	.closeButton {
+		font-size: 40px;
+	}
+}

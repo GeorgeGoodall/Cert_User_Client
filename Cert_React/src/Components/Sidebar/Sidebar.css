@@ -1,0 +1,77 @@
+.sideBar {
+	background-color: white;
+	border: solid black 2px;
+	box-shadow: black 2px 2px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 80vw;
+	height: 100vh;
+	z-index: 100;
+	border-radius: 0px 30px 30px 0px;
+    transform: translateX(-100%);
+	transition: ease-out 0.15s;
+	color: black;
+	padding: 5%;
+}
+
+.open {
+    transition: ease-out 0.15s;
+	transform: translateX(0px);
+}
+
+.logo {
+	width: 30%;
+	margin-right: 10px;
+	float: left;
+}
+
+.headerContainer {
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 2px dashed black;
+}
+
+.header {
+	font-size: 5.5vw;
+}
+
+.box {
+	text-decoration: none;
+	color: black;
+	padding-left: 2vw;
+	box-shadow: grey 0px 0px 25px 5px;
+	border: solid 2px grey;
+	border-radius: 8px;
+	margin-bottom: 14px;
+}
+
+.box h1 {
+	font-size: 5vw;
+}
+
+.pathLink {
+	font-size: 3.5vw;
+}
+
+@media only screen and (min-width: 901px) {
+	.sideBar {
+		padding: 50px;
+	}
+	.logo {
+		width: 200px;
+		margin-right: 10px;
+		float: left;
+	}
+	.header {
+		font-size: 52px;
+	}
+
+	.box h1 {
+		font-size: 50px;
+	}
+
+	.pathLink {
+		font-size: 40px;
+	}
+}

@@ -1,0 +1,22 @@
+.institutionSettings {
+    display: flex;
+}
+
+.settingGroup {
+    width: 45%;
+}
+
+.textInput{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    float: right;
+    margin: 5px 0px;
+}
+.textInputLabel{
+    margin-right: 10px;
+}
+.textInputBox{
+    font-size: 20px;
+    width: 200px;
+}

@@ -1,0 +1,32 @@
+{
+    "native": "Deutsche",
+    "login": "test",
+    "language": "test",
+    "selectA:anguage": "test",
+    "InstitutionResearcherLogin": "test",
+    "id": "test",
+    "LoggedInAs": "test",
+    "change": "test",
+    "passNotRecognised": "test",
+    "serverIssues": "test",
+    "password": "test",
+    "submit": "testt",
+    "userLogin": "test",
+    "createNewUser": "test",
+    "settings": "test",
+    "launchCert": "test",
+    "yourPasswordsDontMatch":"Your passwords dont match",
+    "confirmPassword": "Confirm Password",
+    "changePassword": "Change Password",
+    "oldPassword": "test",
+    "newPassword": "test",
+    "repeatNewPassword": "test",
+
+
+
+
+    "userAgreement": "<h1>User Agreement</h1><p>I understand that by using this website, any performance or demographic data collected will be stored anonymously and cannot be traced back to individuals. I understand that this information may be retained indefinitely or published.<br/><br/>I understand that individual user accounts and their related data can be removed at any time via written request by the original data provider. Written requests should be made to emotionrecognition@cardiff.ac.uk.<br/><br/>I agree not to reproduce any images or content without written permission from the site owner.<br/><br/>I agree not to provide personal information that would enable an individual to be identified when completing the any of the individual tasks after this page.<br/><br/>All information provided when using this site will be held in compliance with GDPR regulations. Cardiff University is the data controller and Matt Cooper is the data protection officer (<a href='mailto:inforequest@cardiff.ac.uk'>inforequest@cardiff.ac.uk</a>). This information is being collected on behalf of Stephanie van Goozen (<a href='mailto:vanGoozenS@cardiff.ac.uk'>vanGoozenS@cardiff.ac.uk</a>).</p><div>I agree to the terms and conditions above:</div>",
+    "confirm": "Confirm",
+    "reject": "Reject"
+
+}

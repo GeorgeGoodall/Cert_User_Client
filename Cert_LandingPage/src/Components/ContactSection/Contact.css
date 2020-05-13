@@ -1,0 +1,42 @@
+.contactSection {
+    margin-left: auto;
+    text-align: center;
+}
+
+.contactSection h1 {
+    font-size: 2vw;
+}
+
+.contactSection p {
+    font-size: 1vw;
+}
+
+@media only screen and (max-width: 1200px) {
+    .contactSection h1 {
+        font-size: 3vw;
+    }
+    
+    .contactSection p {
+        font-size: 2vw;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .contactSection h1 {
+        font-size: 3.5vw;
+    }
+    
+    .contactSection p {
+        font-size: 2.5vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .contactSection h1 {
+        font-size: 30px;
+    }
+    
+    .contactSection p {
+        font-size: 20px;
+    }
+}

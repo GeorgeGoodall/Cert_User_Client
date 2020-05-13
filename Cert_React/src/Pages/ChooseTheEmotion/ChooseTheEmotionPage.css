@@ -1,0 +1,73 @@
+.ChooseTheEmotion {
+	margin-left: 15%;
+	max-width: 100%;
+	max-height: 100%;
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+.ChooseTheEmotionContainer {
+	display: inline-block;
+	width: fit-content;
+}
+
+
+.EmotionChoice {
+	position: relative;
+	width: 50%;
+	height: 50%;
+}
+
+.button {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10;
+	margin: 0;
+	padding: 0 5px;
+	border: 2px solid white;
+}
+
+.button:hover {
+	transform: translateX(-50%);
+	border: 2px solid black;
+}
+
+.button h1 {
+	margin: 5px;
+}
+
+
+.isRight {
+	order: 1;
+}
+
+.image {
+	width: 100%;
+	height: 100%;
+}
+
+@media only screen and (max-width: 1400px) {
+	.ChooseTheEmotionContainer {
+		
+		margin: 0 0 0 0;
+	}
+	.button h1 {
+		margin: 0px;
+	}
+}
+
+
+@media only screen and (max-width: 900px) {
+	.ChooseTheEmotionContainer {
+		
+		margin: 0 0 0 0;
+	}
+	.button h1 {
+		margin: 0px;
+	}
+}

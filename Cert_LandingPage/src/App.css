@@ -1,0 +1,181 @@
+html { scroll-behavior: smooth; }
+
+h1 {
+  
+}
+
+body {
+  background-color: #f3f4f5;
+  max-width: 100vw;
+}
+
+.uniLogo {
+  width: 170px;
+}
+
+.Logo {
+  display: flex;
+  padding: 15px;
+  transform-origin: top left;
+  transform: scale(1);
+  width: fit-content;
+  
+}
+
+.LogoText {
+  font-size: 35px;
+  margin: 0 0 0 10px;
+}
+
+.redText {
+  color: rgb(215,54,72);
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+}
+
+.backgroundWave1 {
+  fill: white;
+}
+
+.backgroundTop {
+  height: 30vh;
+  background-color: white;
+}
+
+.nav {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  text-decoration: none;
+  list-style-type: none;
+  font-size: 30px;
+  z-index: 12;
+}
+
+.nav ul {
+  float: left;
+  text-decoration: underline;
+  text-decoration-color: lightgrey;
+  cursor: pointer;
+}
+
+.nav ul:hover {
+  text-decoration-color: black;
+}
+
+.header {
+  height: 100vh;
+  
+}
+
+.learnMoreLink {
+  text-decoration: none;
+  color: black;
+  z-index: 10;
+}
+
+.learnMoreButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  font-size: 40px;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.learnMoreButton:hover {
+  color: grey;
+  transition: color ease-out 0.2s;
+}
+
+.learnMoreButton:hover .learnMoreArrow{
+  animation: none;
+  transform: translateY(8px);
+}
+
+
+.learnMoreText {
+  font-size: 2vw;
+  margin: 0px;
+  padding: 0px;
+  cursor: pointer;
+}
+
+
+.learnMoreArrow {
+  animation-name: learnMoreArrowMovement;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}
+
+@keyframes learnMoreArrowMovement {
+  0% {transform: translateY(0px)}
+  50% {transform: translateY(8px)}
+  100% {transform: translateY(0px)}
+}
+
+@media only screen and (max-width: 1200px) {
+  .Logo {
+    transform: scale(1);
+  }
+
+  .nav {
+    font-size: 20px;
+  }
+  .learnMoreText {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .Logo {
+    transform: scale(0.8);
+  }
+
+  .nav {
+    font-size: 20px;
+  }
+  .learnMoreText {
+    font-size: 4vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .Logo {
+    padding: 100px 0px 0px 50px;
+
+    transform: scale(0.8);
+  }
+
+  .nav {
+    font-size: 17px;
+    right: 20px;
+  }
+
+  .nav ul {
+    padding-left: 30px;
+  }
+  .learnMoreText {
+    font-size: 6vw;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .Logo {
+    
+    transform: scale(0.6);
+  }
+
+}

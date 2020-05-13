@@ -1,0 +1,120 @@
+.ChooseTheEmotionContainer {
+	max-width: 70vw;
+	margin: auto;
+	max-width: 700px;
+}
+
+.main {
+	display: flex;
+	align-items: center;
+}
+
+.EmotionChoice {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 50%;
+	
+}
+
+.alexInfo {
+	margin: auto;
+}
+
+.button {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10;
+	margin: 0;
+	padding: 0 5px;
+	border: 2px solid white;
+}
+
+.button:hover {
+	transform: translateX(-50%);
+	border: 2px solid black;
+}
+
+.button h1 {
+	margin: 5px;
+}
+
+
+.isRight {
+	order: 1;
+}
+
+.image {
+	width: 100%
+}
+
+@media only screen and (max-width: 1500px) {
+	.main {
+		width: 100%;
+		margin: 0 0 0 0;
+	}
+	.alexInfo {
+		width: 50%;
+	}
+	.ChooseTheEmotionContainer {
+		flex-basis: 125%;
+	}
+	.button h1 {
+		margin: 0px;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	.main {
+		flex-direction: column;
+		align-content: center;
+	}
+	.alexInfo {
+		width: 50%;
+	}
+	.ChooseTheEmotionContainer {
+		flex-basis: 150%;
+	}
+}
+
+@media only screen and (max-height: 1300px) {
+	.main {
+		flex-direction: row;
+		
+	}
+}
+
+
+
+@media only screen and (max-width: 900px) {
+	.main {
+		flex-direction: column;
+		align-content: center;
+	}
+	.alexInfo {
+		width: 50%;
+	}
+	.ChooseTheEmotionContainer{
+		flex-basis: 300%;
+		width: 90%;
+		margin-top: 20px;
+	}
+
+}
+
+@media only screen and (max-height: 1100px) {
+	.main {
+		flex-direction: row;
+	}
+	.alexInfo {
+		width: 50%;
+	}
+	.ChooseTheEmotionContainer{
+		flex-basis: 300%;
+		width: 90%;
+	}
+
+}
+

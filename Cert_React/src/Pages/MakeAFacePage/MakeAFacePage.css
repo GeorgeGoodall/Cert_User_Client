@@ -1,0 +1,22 @@
+.canvasContainer {
+	border: solid 4px black;
+	border-radius: 20px;
+	box-shadow: 15px 15px 15px #4a4a4a;
+	padding: 20px;
+	width: max-content;
+}
+
+.canvas {
+	height: 70vw;
+	width: 70vw;
+
+	max-height: 60vh;
+	max-width: 60vh;
+}
+
+.page {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

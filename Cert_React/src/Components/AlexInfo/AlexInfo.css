@@ -1,0 +1,24 @@
+.alexInfo {
+	width: 100%;
+	align-items: center;
+	margin-top: 0%;
+}
+
+.alexInfoContainer {
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	margin: auto;
+}
+
+.alexFace {
+	width: 190%;
+	transform: translate3d(-22%,0,0);
+	flex-shrink: 0;
+}
+
+@media only screen and (max-width: 900px) {
+	.alexFace {
+		margin-bottom: 10px;
+	}
+}

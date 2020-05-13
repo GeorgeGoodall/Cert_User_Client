@@ -1,0 +1,78 @@
+.button {
+	border: 1px solid grey;
+	cursor: pointer;
+	display: inline-block;
+	padding: 2px 15px;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px grey;
+	background-color: white;
+}
+
+.button:hover {
+	color: white;
+	background-color: black;
+	-webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+
+.button h1 {
+	margin: 0;
+	font-size: 4vw;
+}
+
+.container {
+	width: 100%;
+	height: fit-content;
+	margin: auto;
+}
+
+.player {
+	width: 50%;
+	float: left;
+	position: relative;
+}
+
+.image {
+	width: 50%;
+}
+
+.videoControls {
+	position: absolute;
+	top: 90%;
+}
+
+@media (max-width: 900px) {
+	.button h1 {
+		font-size: 4vw;
+	}
+
+}
+
+@media (max-height: 800px) {
+	.container {
+		width: 90%;
+	}
+
+}
+
+@media (max-height: 600px) {
+	.container {
+		width: 80%;
+	}
+}
+
+@media (max-height: 660px) {
+	.container {
+		width: 80%;
+	}
+
+}
+
+@media (max-height: 530px) {
+	.container {
+		width: 60%;
+	}
+
+}

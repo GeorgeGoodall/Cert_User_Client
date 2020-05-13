@@ -1,0 +1,92 @@
+.sectionContainer {
+    position: relative;
+    padding: 0 0 10vh 0;
+}
+
+.green {
+    fill: #CCF5DB !important;
+    background-color: #CCF5DB;
+}
+
+.blue {
+    fill: #CCFBFE;
+    background-color: #CCFBFE;
+}
+
+.pink {
+    fill: #FCBCB8;
+    background-color: #FCBCB8;
+}
+
+.sectionBackground {
+    display: block;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    transform: translateY(-99%);
+    fill: inherit;
+}
+
+.section {
+    width: 90%;
+    padding: 20px 5% 6% 5%;
+    display: flex;
+    z-index: 5;
+    min-height: 400px;
+}
+
+.halfText {
+    width: 35%;
+    padding: 20px;
+    z-index: 10;
+    font-size: 1vw;
+}
+
+.DektopMobileWidgetContainer {
+    width: 50%;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+.mobileDesktopWidget {
+    width: 100%;
+}
+
+.mobileContainer {
+    float: right;
+    width: 25%;
+    transform: translate3d(-10%, 5%, 0);
+}
+
+.desktopContiner {
+    float: left;
+
+    width: 75%;
+}
+
+@media only screen and (max-width: 1200px) {
+    .halfText {
+        font-size: 1vw;
+    }
+}
+
+
+@media only screen and (max-width: 900px) {
+   .section {
+       flex-direction: column;
+   }
+
+   .reverse {
+       flex-direction: column-reverse;
+   }
+
+   .DektopMobileWidgetContainer {
+       width: 100%;
+   }
+
+   .halfText {
+        width: 80%;
+        padding: 20px;
+        font-size: 4vw;
+    }
+  }

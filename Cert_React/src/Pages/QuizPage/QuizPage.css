@@ -1,0 +1,28 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.image {
+	align-self: center;
+	height: 35vh;
+}
+
+.chartContainer {
+	width: 50%;
+}
+
+.feedback {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@media only screen and (max-width: 900px) {
+	.feedback {
+		flex-direction: column;
+	}
+	.chartContainer {
+		width: 100%;
+	}
+}

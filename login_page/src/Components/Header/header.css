@@ -1,0 +1,69 @@
+body {
+    background-color: #f3f4f5;
+    max-width: 100vw;
+  }
+  
+  .uniLogo {
+    width: 170px;
+  }
+  
+  .Logo {
+    display: flex;
+    padding: 15px;
+    transform-origin: top left;
+    transform: scale(1);
+    width: fit-content;
+  }
+  
+  .LogoText {
+    font-size: 35px;
+    margin: 0 0 0 10px;
+  }
+  
+  .redText {
+    color: rgb(215,54,72);
+  }
+  
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    z-index: -10;
+  }
+  
+  .backgroundWave1 {
+    fill: white;
+  }
+  
+  .backgroundTop {
+    height: 30vh;
+    background-color: white;
+    z-index: -10;
+  }
+  
+  .nav {
+    position: absolute;
+    top: 0;
+    right: 50px;
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 30px;
+    z-index: 12;
+  }
+  
+  .nav ul {
+    float: left;
+    text-decoration: underline;
+    text-decoration-color: lightgrey;
+    cursor: pointer;
+  }
+  
+  .nav ul:hover {
+    text-decoration-color: black;
+  }
+  
+  .header {
+    
+  }

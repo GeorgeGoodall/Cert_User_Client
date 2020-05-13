@@ -1,0 +1,37 @@
+.image {
+	width: 60%;
+	margin-right: 10px;
+}
+
+.middleColumn {
+	display: flex;
+	align-items: flex-start;
+}
+
+.textArea {
+	width: 30%;
+	height: 150px;
+}
+
+.middleColumn {
+	display: flex;
+	align-items: flex-start;
+}
+
+@media (max-width: 600px) {
+	.middleColumn {
+		flex-direction: column;
+		align-items: center;
+	}
+	.textArea {
+		width: 100%;
+	}
+	.image {
+		width: 100%;
+		margin: 20px;
+	}
+	.middleColumn {
+		flex-direction: column;
+		align-items: center;
+	}
+}

@@ -1,0 +1,116 @@
+.image {
+	width: 60%;
+	margin-right: 10px;
+}
+
+.middleColumn {
+	display: flex;
+	align-items: flex-start;
+}
+
+.textArea {
+	width: 100%;
+	height: 150px;
+}
+
+.rightArea {
+	width: 30%;
+}
+
+.middleColumn {
+	display: flex;
+	align-items: flex-start;
+}
+
+.whatElseCouldYouDo {
+	font-size: 30px;
+}
+
+.button, .helpButton {
+	width: 100%;
+	padding: 5px;
+}
+
+
+
+.button h1{
+	font-size: 30px;
+}
+.helpButton h1{
+	font-size: 30px;
+}
+
+.header {
+	font-size: 40px;
+}
+
+.whatElseCouldYouDo {
+	font-size: 30px;
+}
+
+.answerSection {
+
+}
+
+@media only screen and (max-width: 1350px) {
+	.button h1{
+		font-size: 20px;
+	}
+	.helpButton h1{
+		font-size: 20px;
+	}
+	.header {
+		font-size: 30px;
+	}
+	.whatElseCouldYouDo {
+		font-size: 17px;
+	}
+	.textArea {
+		height: 130px;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.button h1{
+		font-size: 14px;
+	}
+	.helpButton h1{
+		font-size: 14px;
+	}
+	.header {
+		font-size: 20px;
+	}
+	.whatElseCouldYouDo {
+		font-size: 14px;
+	}
+	.textArea {
+		height: 110px;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	.middleColumn {
+		flex-direction: column;
+	}
+	.header {
+		font-size: 14px;
+	}
+	.image {
+		width: 100%;
+		margin-right: 10px;
+	}
+	.rightArea {
+		width: 100%;
+	}
+	.button {
+		width: 100%;
+		padding: 1px;
+		margin: 2px;
+	}
+	.textArea {
+		height: 80px;
+	}
+	.answerSection {
+		flex-direction: column;
+	}
+}
