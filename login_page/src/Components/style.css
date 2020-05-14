@@ -63,7 +63,6 @@
 
 .button {
     float: right;
-    width: 20%;
     margin: 5px 0px 0px 80%;
 }
 
@@ -164,3 +163,38 @@
     width: 100%;
 }
 
+@media only screen and (max-width: 1200px){
+    .loginArea {
+        width: 100%;
+    }
+    .loginMain {
+        width: 95%;
+    }
+    .dropdown {
+        
+    }
+    
+    .dropdownLable {
+        font-size: 20px;
+    
+    }
+    
+    .rightValue {
+        width: 60%;
+        padding: 1px;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .loginMain {
+        width: 100%;
+    }
+    .dropdownContainer {
+     
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

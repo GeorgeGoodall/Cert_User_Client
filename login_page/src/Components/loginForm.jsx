@@ -96,7 +96,7 @@ const LoginForm = (props) => {
                     <input className="rightValue" type="text" ref={idRef}/>
                 </div>
                 <div className={"dropdownContainer floatsRight"}>
-                    <div className="dropdownLable">{lang.password}</div>
+                    <div className="dropdownLable">{lang.password}:</div>
                     <input className="rightValue" type="password" ref={passRef}/>
                 </div>
                 <button className={"button"} onClick={onSubmit}>{lang.submit}</button>

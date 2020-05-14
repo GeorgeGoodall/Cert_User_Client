@@ -3,7 +3,9 @@
 }
 
 .settingGroup {
-    width: 45%;
+    width: 49%;
+    border-bottom: dashed 1px grey;
+    padding-bottom: 15px;
 }
 
 .textInput{
@@ -12,6 +14,7 @@
     justify-content: flex-end;
     float: right;
     margin: 5px 0px;
+    width: 100%;
 }
 .textInputLabel{
     margin-right: 10px;
@@ -19,4 +22,25 @@
 .textInputBox{
     font-size: 20px;
     width: 200px;
+}
+
+@media only screen and (max-width: 900px){
+    .settingGroup {
+        width: 100%;
+    }
+    .institutionSettings {
+        display: flex;
+        flex-direction: column;
+    }
+    .textInput{
+        
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .textInput{
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

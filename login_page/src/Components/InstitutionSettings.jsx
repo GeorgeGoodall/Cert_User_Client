@@ -9,6 +9,7 @@ const InstitutionSettings = (props) => {
     return (
         <div className="institutionSettings">
             <ChangePassword lang={lang}/>
+            <ChangePassword lang={lang}/>
         </div>
     );
 }
