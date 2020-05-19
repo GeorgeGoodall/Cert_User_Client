@@ -30,7 +30,11 @@ function PartsOfTheFacePage(props){
 		let answeredCorrectly = answer == correctAnswer;
 		setHelpButtonHidden(false);
 		alexPopupRef.current.openAlerts(answeredCorrectly);
-		submitAnswer(slideNumber,answer);
+		const answerObject = {
+			answerIndex: answer,
+			answerText: answers[answer].text,
+		}
+		submitAnswer(slideNumber,answerObject);
 	}
 
 	answers = JSON.parse(JSON.stringify(answers)); // make copy not reference

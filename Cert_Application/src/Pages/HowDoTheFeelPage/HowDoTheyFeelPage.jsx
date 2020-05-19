@@ -35,12 +35,11 @@ function HowDoTheyFeelPage(props){
 		alexHelpPopupRef.current.openAlerts(true);
 	}
 
-	const {currentSlide, image, AlexImage, slideNumber} = props;
+	const {currentSlide, image, AlexImage, slideNumber, answersSubmitted} = props;
 	const {emotion, person, extraHelp, noHint} = currentSlide.params;
 	
 	const header = language.howDoesNameFeel(person);
 	const AlexSpeechBubble = language.HowDoTheyFeel.HowDoTheyFeelHint;
-	const {answersSubmitted} = props;
 
 
 	for(let i = 0; i < answers.length; i++){

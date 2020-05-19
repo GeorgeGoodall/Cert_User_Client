@@ -134,7 +134,7 @@ function TaskPage(props) {
 	const setAnswerForSlide = (slideIndex, answer) => {
 		let temp = [...answersSubmitted];
 		const answerCopy = JSON.parse(JSON.stringify(answer));
-		temp[slideIndex] = answerCopy;
+		temp[slideIndex] = [answerCopy];
 		setAnswersSubmitted(temp);
 	}
 

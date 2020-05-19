@@ -32,7 +32,8 @@ function QuizPage(props){
 	let onClickHandler = (i) => {
 		const answerObject = {
 			answerIndex: i,
-			answerText: getEmotionStrings(true)[i]
+			answerText: language.getEmotionStringsEnglish(true)[i],
+			correct: language.getEmotionStringsEnglish(true)[i] == currentSlide.params.emotion
 		}
 		submitAnswer(slideNumber,answerObject);
 	}

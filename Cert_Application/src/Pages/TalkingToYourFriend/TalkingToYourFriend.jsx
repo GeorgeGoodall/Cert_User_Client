@@ -24,7 +24,7 @@ const TalkingToYourFriend = (props) => {
             setText(event.target.value);
             const answerObject = {
                 answerIndex: [event.target.value,text2],
-                answerText: [event.target.value,text2],
+                answerText: null,
             }
             submitAnswer(slideNumber,answerObject)
         }
@@ -32,7 +32,7 @@ const TalkingToYourFriend = (props) => {
             setText2(event.target.value);
             const answerObject = {
                 answerIndex: [text,event.target.value],
-                answerText: [text,event.target.value],
+                answerText: null,
             }
             submitAnswer(slideNumber,answerObject)
         }

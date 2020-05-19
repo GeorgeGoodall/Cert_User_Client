@@ -23,8 +23,10 @@ function QuizFeedbackPage(props){
 	for(let i = 0; i < slides.length; i++){
 		if(slides[i].type == "QuizPage"){
 			
-			if(emotions[answersSubmitted[i]] == slides[i].params.emotion){
-				correctCount[answersSubmitted[i]]++;
+			console.log(answersSubmitted);
+			
+			if(typeof answersSubmitted[i][0] != "undefined" && emotions[answersSubmitted[i][0].answerIndex] == slides[i].params.emotion){
+				correctCount[answersSubmitted[i][0].answerIndex]++;
 			}
 
 			totalQuestions++;

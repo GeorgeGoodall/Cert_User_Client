@@ -32,7 +32,6 @@ function Nav(props) {
 	isMobile.addListener((isMobile)=>setPageTitle(getPageTitle(isMobile)));
 
 	const backLink = () => {
-		console.log(props.session, props.task);
 		if(typeof props.session != "undefined" && typeof props.task == "undefined"){
 			return "/home";
 		}else if(typeof props.task != "undefined" && typeof props.task != "undefined"){

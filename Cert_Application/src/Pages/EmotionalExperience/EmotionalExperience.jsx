@@ -23,7 +23,7 @@ let EmotionalExperience = (props) => {
 			answerIndex: event.target.value,
 			answerText: event.target.value
 		}
-		submitAnswer(slideNumber,event.target.value);
+		submitAnswer(slideNumber,answerObject);
 	}
 
 	return (

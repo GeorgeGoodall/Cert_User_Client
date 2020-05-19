@@ -47,11 +47,11 @@ const EmotionalStoriesAdolescentPage = (props) => {
             setFrame(3);
         else{
             // page is filled, should submit answer and set can continue
-            const answer1Text = typeof getEmotionStrings()[_answer1] != "undefined" ? getEmotionStrings()[_answer1].text : "";
-            const answer2Text = typeof getEmotionStrings()[_answer2] != "undefined" ? getEmotionStrings()[_answer2].text : "";
+            const answer1Text = language.getEmotionStringsEnglish()[_answer1] != "undefined" ? language.getEmotionStringsEnglish()[_answer1] : "";
+            const answer2Text = language.getEmotionStringsEnglish()[_answer2] != "undefined" ? language.getEmotionStringsEnglish()[_answer2] : "";
             const answerObj = {
                 answerIndex: [_answer1, _text1, _answer2, _text2],
-                answerText: [answer1Text,_text1,answer2Text,_text2]
+                answerText: [answer1Text,answer2Text]
             }
             setAnswer(slideNumber, answerObj, true);
         }
@@ -87,23 +87,25 @@ const EmotionalStoriesAdolescentPage = (props) => {
                 break;
         }
 
-        const answer1Text = typeof getEmotionStrings[_answer1] != "undefined" ? getEmotionStrings[_answer1].text : "";
-        const answer2Text = typeof getEmotionStrings[_answer2] != "undefined" ? getEmotionStrings[_answer2].text : "";
+        const answer1Text = language.getEmotionStringsEnglish()[_answer1] != "undefined" ? language.getEmotionStringsEnglish()[_answer1] : "";
+        const answer2Text = language.getEmotionStringsEnglish()[_answer2] != "undefined" ? language.getEmotionStringsEnglish()[_answer2] : "";
         const answerObject = {
             answerIndex: [_answer1, _text1, _answer2, _text2],
-            answerText: [answer1Text, _text1, answer2Text, _text2]
+            answerText: [answer1Text, answer2Text]
         }
 
         setAnswer(slideNumber, answerObject, false);
         setFrameFromAnswers(_answer1, _text1, _answer2, _text2);
     }
+
+    console.log(answersSubmitted)
     
     for(let i = 0; i < answers.length; i++){
 		answers[i] = {
 			text:answers[i],
 			id:i,
-			inactive:answersSubmitted[0] == i || answersSubmitted[2] == i,
-			selected:i == answersSubmitted[0], 
+			inactive:Array.isArray(answersSubmitted[0]) && (answersSubmitted[0][0] == i || answersSubmitted[0][2] == i),
+			selected:Array.isArray(answersSubmitted[0]) && i == answersSubmitted[0][0], 
 			onClickHandler:()=>submitAnswer(0,i),
 		};
     }
@@ -112,8 +114,8 @@ const EmotionalStoriesAdolescentPage = (props) => {
 		answers2[i] = {
 			text:answers2[i],
 			id:i,
-			inactive:answersSubmitted[0] == i || answersSubmitted[2] == i,
-			selected:i == answersSubmitted[2], 
+			inactive:Array.isArray(answersSubmitted[0]) && (answersSubmitted[0][0] == i || answersSubmitted[0][2] == i),
+			selected:Array.isArray(answersSubmitted[0]) && i == answersSubmitted[0][2], 
 			onClickHandler:()=>submitAnswer(2,i),
 		};
     }

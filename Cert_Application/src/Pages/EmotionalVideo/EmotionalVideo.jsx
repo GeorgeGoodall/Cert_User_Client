@@ -51,7 +51,7 @@ let EmotionalVideo = (props) => {
 			timeTaken,
 		}
 
-		submitAnswer(slideNumber, i);
+		submitAnswer(slideNumber, answerObj);
 	}
 
 	let handlePlayClick = () => {
@@ -68,13 +68,14 @@ let EmotionalVideo = (props) => {
 		let inactive = false;
 		let selected = false;
 		for (let j in answersSubmitted) {
-			if (answersSubmitted[j][0] == i) {
+			console.log(answersSubmitted);
+			if (answersSubmitted[j] == i) {
 				inactive = true;
 				break;
 			}
 		}
 		if (typeof answersSubmitted[answersSubmitted.length - 1] != "undefined") {
-			if (answersSubmitted[answersSubmitted.length - 1][0] == correctAnswer) {
+			if (answersSubmitted[answersSubmitted.length - 1] == correctAnswer) {
 				inactive = true;
 				if (i == correctAnswer) {
 					selected = true;

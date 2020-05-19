@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import axios from 'axios'
 
 import getTasks from "./config/tasks.js"
 
@@ -28,7 +29,6 @@ class App extends Component{
 		super(props);
 
 		this.tasks = getTasks();
-		
 
 		let windowWidth = typeof window !== "undefined" ? window.outerWidth : 0;
 	    let windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
@@ -46,6 +46,13 @@ class App extends Component{
 			return "are you sure";
 		}).bind(this));
 
+	}
+
+	async componentDidMount(){
+		const authData = await axios.get('/checkCookies');
+		if(authData.data.institution == null || authData.data.user == null){
+			window.location.href = "/login"
+		}
 	}
 
 	async getLatestTaskArray(){
