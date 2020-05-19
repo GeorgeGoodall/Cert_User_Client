@@ -13,11 +13,10 @@ import Settings from "./Pages/SettingsPage/Settings";
 import "./Assets/css/globalStyles.css";
 
 function saveStateToStorage(state){
-	console.log("saving state");
+	
 	try {
 		localStorage.setItem('session', state.session);
 		localStorage.setItem('task', state.task);
-		console.log("saved");
 	} catch (e){
 		console.log(e);
 	}
@@ -43,10 +42,7 @@ class App extends Component{
 
 		window.addEventListener("beforeunload",(function(event)
 		{
-			console.log("unload");
-			console.log(this.state);
 			saveStateToStorage(this.state);
-			console.log("test");
 			return "are you sure";
 		}).bind(this));
 
@@ -55,14 +51,12 @@ class App extends Component{
 	async getLatestTaskArray(){
 		await this.setState((pastState)=>{
 			let tasks = getTasks();
-			console.log(tasks);
 			return {tasks}
 		})
 	}
 
 
   	setSession(index) {
-		console.log("set session");
   		let session = index;
   		this.setState((pastState) => {
   			return {session}
@@ -71,7 +65,6 @@ class App extends Component{
 
   	setTask(index) {
   		let task = index;
-  		console.log("setting state")
   		this.setState((pastState) => {
   			return {task};
   		});
@@ -81,7 +74,10 @@ class App extends Component{
 
 		let page = <SessionMenu />;
 		if(this.state.page == "task"){
-			page = <TaskPage slides={this.state.currentSlides}/>
+			page = 	<TaskPage 
+						slides={this.state.currentSlides}
+						sessionNumber={this.state.session}
+					/>
 		}
 
 		let pageStyle = {
@@ -111,7 +107,7 @@ class App extends Component{
 			  		<Switch>
 			  			<Route path="/(home|)" component={()=> <Home setSession={this.setSession.bind(this)}/> } />
 			  			<Route path="/Session" component={()=> <SessionMenu session={session} tasks={this.state.tasks[sessionId]} setTask={this.setTask.bind(this)}/> } />
-			  			<Route path="/task" component={()=> <TaskPage slides={slides} /> } />
+			  			<Route path="/task" component={()=> <TaskPage slides={slides} sessionNumber={this.state.session} /> } />
 						<Route path="/settings" component={()=> <Settings /> } />
 			  		</Switch>
 			  		

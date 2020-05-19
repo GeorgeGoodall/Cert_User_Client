@@ -21,7 +21,6 @@ function CopyTheFacePage(props){
 	
 
 	const capture = () => {
-		console.log("test");
 	    imageSrc = webcamRef.current.getScreenshot();
 	    setImageSrc(imageSrc);
 	    setCanProceed(true);

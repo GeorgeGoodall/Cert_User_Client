@@ -9,7 +9,7 @@ import VideoButton from "./VideoButton.jsx";
 import AnswerSection from "../../Components/AnswerSection/AnswerSection.jsx";
 import AlexPopup from "../../Components/AlexPopup/AlexPopup.jsx";
 
-import { language, ageType } from "../../config/tasks.js";
+import { language, ageType, getEmotionStrings } from "../../config/tasks.js";
 import { getGender } from "../../config/People.js";
 import { useRef } from 'react';
 import {getHeaderClass, getSubHeaderClass} from "../../config/CSSTextClassBoundrys"
@@ -35,6 +35,7 @@ let EmotionalVideo = (props) => {
 
 	let onAnswerHandler = async (i) => {
 		let answeredCorrectly = i == language.getEmotionStrings().indexOf(currentSlide.params.emotion);
+		const timeTaken = player.getCurrentTime();
 		alexPopupRef.current.openAlerts(answeredCorrectly);
 		if (!answeredCorrectly) {
 			handleResetClick();
@@ -43,7 +44,14 @@ let EmotionalVideo = (props) => {
 			setSecondFrame(true);
 		}
 		setShowAnswers(false);
-		submitAnswer(slideNumber, i, player.getCurrentTime());
+
+		const answerObj = {
+			answerIndex: i,
+			answerText: getEmotionStrings()[i],
+			timeTaken,
+		}
+
+		submitAnswer(slideNumber, i);
 	}
 
 	let handlePlayClick = () => {

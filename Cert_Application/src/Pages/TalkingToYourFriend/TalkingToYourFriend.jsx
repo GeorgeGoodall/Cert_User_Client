@@ -22,17 +22,29 @@ const TalkingToYourFriend = (props) => {
     const onChangeCallback = (event, textBoxId) => {
         if(textBoxId == 1){
             setText(event.target.value);
-            submitAnswer(slideNumber,[event.target.value,text2])
+            const answerObject = {
+                answerIndex: [event.target.value,text2],
+                answerText: [event.target.value,text2],
+            }
+            submitAnswer(slideNumber,answerObject)
         }
         else{
             setText2(event.target.value);
-            submitAnswer(slideNumber,[text,event.target.value])
+            const answerObject = {
+                answerIndex: [text,event.target.value],
+                answerText: [text,event.target.value],
+            }
+            submitAnswer(slideNumber,answerObject)
         }
 		
     }
 
     const onClickCallback = async (answer) => {
-        alexPopupRef.current.openAlerts(await submitAnswer(slideNumber, answer));
+        const answerObject = {
+            answerIndex: answer,
+            answerText: answers[answer], // ToDo: this need to be in english, but currently in selected language
+        }
+        alexPopupRef.current.openAlerts(await submitAnswer(slideNumber, answerObject));
     }
     
     

@@ -5,6 +5,7 @@ import {getHeaderClass} from "../../config/CSSTextClassBoundrys";
 import {language} from "../../config/tasks"
 import Button from '../../Components/Button/Button';
 import classNames from "classnames"
+import {getEmotionStrings} from "../../config/tasks"
 
 
 const EmotionalStoriesAdolescentPage = (props) => {
@@ -14,7 +15,7 @@ const EmotionalStoriesAdolescentPage = (props) => {
     
     const {storyImage, answersSubmitted, currentSlide, slideNumber, setAnswer} = props;
     const {storyText, header} = currentSlide.params;
-    
+   
     
     let answers = language.getEmotionStrings();
     answers = JSON.parse(JSON.stringify(answers));
@@ -36,8 +37,6 @@ const EmotionalStoriesAdolescentPage = (props) => {
         if(_text2 == null)
             _text2 = text2;
 
-        console.log(_answer1, _text1, _answer2, _text2);
-
         if(_answer1 == null)
             setFrame(0);
         else if(_text1.length == 0)
@@ -48,7 +47,13 @@ const EmotionalStoriesAdolescentPage = (props) => {
             setFrame(3);
         else{
             // page is filled, should submit answer and set can continue
-            setAnswer(slideNumber, [_answer1, _text1, _answer2, _text2], true);
+            const answer1Text = typeof getEmotionStrings()[_answer1] != "undefined" ? getEmotionStrings()[_answer1].text : "";
+            const answer2Text = typeof getEmotionStrings()[_answer2] != "undefined" ? getEmotionStrings()[_answer2].text : "";
+            const answerObj = {
+                answerIndex: [_answer1, _text1, _answer2, _text2],
+                answerText: [answer1Text,_text1,answer2Text,_text2]
+            }
+            setAnswer(slideNumber, answerObj, true);
         }
         
     }
@@ -81,7 +86,15 @@ const EmotionalStoriesAdolescentPage = (props) => {
             default:
                 break;
         }
-        setAnswer(slideNumber, [_answer1, _text1, _answer2, _text2], false);
+
+        const answer1Text = typeof getEmotionStrings[_answer1] != "undefined" ? getEmotionStrings[_answer1].text : "";
+        const answer2Text = typeof getEmotionStrings[_answer2] != "undefined" ? getEmotionStrings[_answer2].text : "";
+        const answerObject = {
+            answerIndex: [_answer1, _text1, _answer2, _text2],
+            answerText: [answer1Text, _text1, answer2Text, _text2]
+        }
+
+        setAnswer(slideNumber, answerObject, false);
         setFrameFromAnswers(_answer1, _text1, _answer2, _text2);
     }
     

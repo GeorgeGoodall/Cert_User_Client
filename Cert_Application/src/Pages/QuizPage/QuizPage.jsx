@@ -7,6 +7,7 @@ import classes from "./QuizPage.css";
 import AnswerSection from "../../Components/AnswerSection/AnswerSection.jsx";
 
 import {language} from "../../config/tasks.js";
+import {getEmotionStrings} from "../../config/tasks";
 import {getHeaderClass, getSubHeaderClass} from "../../config/CSSTextClassBoundrys"
 
 const images = {};
@@ -18,11 +19,7 @@ function importAll(r) {
   });
 }
 
-console.log("Import");
-
 function QuizPage(props){
-
-	console.log(images);
 
 	const {currentSlide, answersSubmitted, submitAnswer, slideNumber} = props;
 	const {person, emotion} = currentSlide.params;
@@ -33,7 +30,11 @@ function QuizPage(props){
 	let answers = language.getEmotionStrings(true);
 
 	let onClickHandler = (i) => {
-		submitAnswer(slideNumber,i);
+		const answerObject = {
+			answerIndex: i,
+			answerText: getEmotionStrings(true)[i]
+		}
+		submitAnswer(slideNumber,answerObject);
 	}
 
 
@@ -41,7 +42,7 @@ function QuizPage(props){
 		answers[i] = {
 			text:answers[i],
 			id:i,
-			inactive:answersSubmitted != "-1",
+			inactive:typeof answersSubmitted != "undefined",
 			selected:i == answersSubmitted, 
 			onClickHandler:()=>onClickHandler(i),
 		};

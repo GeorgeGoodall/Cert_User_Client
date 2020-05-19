@@ -18,8 +18,6 @@ function Session2ReviewPage(props){
 
     const index = currentSlide.index;
 
-    console.log(image);
-
     let _image = new Image()
     _image.src = image;
     image = _image;

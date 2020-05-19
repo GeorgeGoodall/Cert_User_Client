@@ -12,7 +12,6 @@ import {language} from '../../config/tasks.js';
 
 function QuizFeedbackPage(props){
 
-	console.log(props);
 	const {slides, answersSubmitted} = props;
 
 	let totalQuestions = 0; 

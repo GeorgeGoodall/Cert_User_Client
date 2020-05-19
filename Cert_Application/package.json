@@ -2,6 +2,7 @@
   "name": "cert_react",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5050",
   "dependencies": {
     "@babel/core": "7.8.4",
     "@fortawesome/fontawesome-free": "^5.13.0",
@@ -11,6 +12,7 @@
     "@testing-library/user-event": "^7.1.2",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
+    "axios": "^0.19.2",
     "babel-eslint": "10.0.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.0.6",

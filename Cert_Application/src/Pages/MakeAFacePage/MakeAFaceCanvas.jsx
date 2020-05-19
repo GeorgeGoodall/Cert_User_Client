@@ -66,7 +66,6 @@ const MakeAFaceCanvas = React.memo( (props) => {
 
 	useEffect(()=>{
         canvas = document.getElementById("game_canvas_"+props.slideNumber);
-        console.log("here");
 		ctx = canvas.getContext("2d");
 
         
@@ -153,12 +152,9 @@ const MakeAFaceCanvas = React.memo( (props) => {
         afterMouseDown(e)
     }
 
-	function downEvents(e){ // Called when the left mouse buttom is held down. Changes image position to "mouse" if the mouse is held down over the image and updates the canvas.
-        console.log("test");
-    
+	function downEvents(e){ // Called when the left mouse buttom is held down. Changes image position to "mouse" if the mouse is held down over the image and updates the canvas.   
         let mousePos = getMousePosFromEvent(e);
 
-        console.log(mousePos);
         let {naturalWidth, naturalHeight} = images[0];
         naturalWidth *= scale;
         naturalHeight *= scale;
@@ -192,7 +188,6 @@ const MakeAFaceCanvas = React.memo( (props) => {
     }
 
     function upEvents(e){
-        console.log(e);
         let mousePos = getMousePosFromEvent(e);
         let {naturalWidth, naturalHeight} = images[0];
         naturalWidth *= scale;
@@ -232,11 +227,8 @@ const MakeAFaceCanvas = React.memo( (props) => {
     }
 
     function checkFinished(){
-
-        console.log(chosen);
         let correct = false;
 
-        console.log(props.answer);
         if(typeof props.answer == "undefined"){
             if(
                 (typeof props.flipped == "undefined" || !props.flipped) 
@@ -245,7 +237,6 @@ const MakeAFaceCanvas = React.memo( (props) => {
                 || (props.flipped) 
                 && ((chosen.indexOf(0) > -1 && chosen.indexOf(3) > -1) || (chosen.indexOf(1) > -1 && chosen.indexOf(2) > -1)))
             {
-                console.log("correct 1")
                 correct = true;
             }
         }
@@ -256,7 +247,6 @@ const MakeAFaceCanvas = React.memo( (props) => {
                     ((typeof props.flipped == "undefined" || !props.flipped) && chosen.indexOf(0) > -1 && chosen.indexOf(2) > -1)
                     || (props.flipped) && (chosen.indexOf(0) > -1 && chosen.indexOf(3) > -1))
                 {
-                    console.log("correct 2")
                     correct = true;
                 }
             }
@@ -265,7 +255,6 @@ const MakeAFaceCanvas = React.memo( (props) => {
                     ((typeof props.flipped == "undefined" || !props.flipped) && chosen.indexOf(1) > -1 && chosen.indexOf(3) > -1)
                     || (props.flipped) && (chosen.indexOf(1) > -1 && chosen.indexOf(2) > -1))
                 {
-                    console.log("correct 3")
                     correct = true;
                 }
             }
@@ -278,7 +267,6 @@ const MakeAFaceCanvas = React.memo( (props) => {
     }
 
     function draw_images(hovering = null, selected = null, selectedPos = null){
-        console.trace();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
  
         let margin = 20;
@@ -379,7 +367,6 @@ const MakeAFaceCanvas = React.memo( (props) => {
         }
     }
 	
-    console.log("Render Canvas: chosen", JSON.stringify(chosen));
 	return (
     	<canvas id={'game_canvas_'+props.slideNumber} height='1000' width='1000'  className={classes.canvas} ></canvas>
 	);

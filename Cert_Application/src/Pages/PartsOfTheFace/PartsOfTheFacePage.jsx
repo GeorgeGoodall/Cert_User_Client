@@ -27,7 +27,6 @@ function PartsOfTheFacePage(props){
 	let answeredCorrectly = false;
 
 	const onAnswerHandler = (answer) => {
-		console.log(answer, correctAnswer);
 		let answeredCorrectly = answer == correctAnswer;
 		setHelpButtonHidden(false);
 		alexPopupRef.current.openAlerts(answeredCorrectly);

@@ -13,7 +13,6 @@ const CreateNewUserForm = (props) => {
 
     const getNewID = async() => {
         let result = await axios.get("/institution/getUserName");
-        console.log(result);
         setnewUserId(result.data);
     }
 

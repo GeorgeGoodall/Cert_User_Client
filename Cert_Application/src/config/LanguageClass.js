@@ -8,8 +8,6 @@ export const LanguageClass = (language) => {
 		return language.sessionId.replace("{0}", sessionNumber);
 	};
 	language.getPartsOfTheFaceHeader = (names,emotion,feature) => {
-		console.log(emotion, feature);
-		console.log(language.partsOfTheFace[emotion][feature]);
 		if(typeof language.partsOfTheFace[emotion][feature] == "string")
 			return language.partsOfTheFace[emotion][feature]
 				.replace("{0}",capitaliseFirstLetter(names[0]))
@@ -103,7 +101,6 @@ export const LanguageClass = (language) => {
 				toReturn += observation;
 			}
 		}
-		console.log(toReturn);
 		return toReturn;
 	};
 	language.howDoesNameFeel = (name) => {

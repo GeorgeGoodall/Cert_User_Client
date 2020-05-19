@@ -26,7 +26,11 @@ function ChooseTheEmotionPage(props){
 
 	let submitAnswer = (answerIndex) => {
 		alexPopupRef.current.openAlerts(emotionToChoose == params.options[answerIndex][1]);
-		props.submitAnswer(props.slideNumber,answerIndex);
+		const answerObject = {
+			answerIndex,
+			answerText: options[answerIndex][0] + "_" + options[answerIndex][1]
+		}
+		props.submitAnswer(props.slideNumber,answerObject);
 	}
 
 	const {answersSubmitted} = props;

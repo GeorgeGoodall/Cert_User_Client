@@ -10,8 +10,6 @@ function importAll(r) {
   });
 }
 
-
-console.log(languages)
 let currentLanguage = languages.English;
 
 const getCurrentLanguage = () => {

@@ -13,7 +13,6 @@ import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 class Header extends Component{
 	constructor(props){
 		super(props);
-		console.log(props.windowSize);
 		this.state=({
 			"task": props.task,
 			"session": props.session,
@@ -26,7 +25,6 @@ class Header extends Component{
 	}
 
 	componentWillReceiveProps(nextProps){
-		console.log("update props")
 		this.setState({
 			"task": nextProps.task,
 			"session": nextProps.session

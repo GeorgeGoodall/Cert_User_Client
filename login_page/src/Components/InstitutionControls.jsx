@@ -67,8 +67,6 @@ const InstitutionControls = (props) => {
         loginTabClick(0);
     }
 
-    console.log(authData);
-
     return (
         <div>
             <div className={"tabs"} >

@@ -15,11 +15,14 @@ let EmotionalExperience = (props) => {
 
 	let [text, setText] = useState(answerSubmitted);
 
-	console.log(repeatEmotion);
 	const header = language.getEmotionalExperianceHeader(emotion,repeatEmotion);
 
 	const onChangeCallback = (event) => {
 		setText(event.target.value);
+		const answerObject = {
+			answerIndex: event.target.value,
+			answerText: event.target.value
+		}
 		submitAnswer(slideNumber,event.target.value);
 	}
 

@@ -1,4 +1,5 @@
 import React, {Component, useEffect, useRef, useState, useReducer, useMemo} from 'react';
+import axios from 'axios';
 
 // todo lazy load all thease
 import InformationPage from "../InformationPage/InformationPage.jsx";
@@ -74,7 +75,6 @@ function TaskPage(props) {
 	let emotionsUsed = [];
 
 	const webcamError = (error = null) => {
-		console.log(error);
 		webcamAlertRef.current.openAlerts(true);
 		setCanProceed(false);
 		setShouldRedirect(true);
@@ -83,12 +83,10 @@ function TaskPage(props) {
 	useEffect(() => {
 		if(slides.requiresWebcam){
 			try { // Attempts to link to webcam and display webcam image on the webcam_display video
-				console.log("trying to get webcam");
 			   if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) { 
 				   
 				   navigator.mediaDevices.getUserMedia({video: true})
 				   .then((_stream) => {
-					   	console.log("sucess");
 						stream = _stream;   
 				   })
 				  .catch(function(error) { 
@@ -97,7 +95,6 @@ function TaskPage(props) {
 				   });
 			   }
 		   } catch(err){ // If failed displays denied alert
-			   console.log(err);
 			   webcamAlertRef.current.openAlerts(true);
 			   setCanProceed(false);
 			   setShouldRedirect(true);
@@ -112,9 +109,7 @@ function TaskPage(props) {
 	   	}
 	});
 
-	const _handleKeyUp = (event) => {
-		console.log("keyPress");
-		
+	const _handleKeyUp = (event) => {		
 		switch(event.keyCode){
 			case 37:
 				loadSlide(-1);
@@ -123,7 +118,6 @@ function TaskPage(props) {
 				loadSlide(1);
 				break
 			case 38:
-				console.log(answersSubmitted);
 				break
 			default:
 				break; 
@@ -132,56 +126,70 @@ function TaskPage(props) {
 
 	const pushAnswerForSlide = (slideIndex, answer) => {
 		let temp = [...answersSubmitted];
-		console.log(temp);
-		temp[slideIndex].push(answer);
+		const answerCopy = JSON.parse(JSON.stringify(answer));
+		temp[slideIndex].push(answerCopy);
 		setAnswersSubmitted(temp);
 	}
 
 	const setAnswerForSlide = (slideIndex, answer) => {
 		let temp = [...answersSubmitted];
-		temp[slideIndex] = answer;
+		const answerCopy = JSON.parse(JSON.stringify(answer));
+		temp[slideIndex] = answerCopy;
 		setAnswersSubmitted(temp);
 	}
 
-	const submitAnswer = async(slideIndex, answerIndex) => {
+	const submitAnswer = async(slideIndex, answerObject) => {
 
 		const {correctAnswer, emotion, answers} = slides.slides[slideIndex].params;
-		pushAnswerForSlide(slideIndex, answerIndex);
 
+		const {answerIndex} = answerObject;
+		let correct = false;
+		
 		if(answerIndex == correctAnswer || (typeof answers == "undefined" && answerIndex == getEmotionStrings(true).indexOf(emotion))){
 			setCanProceed(true);
 			setSlideReached(slideNumber+1);
-			return true;
+			correct = true;
 		}
-		return false;
+		
+		const answerText = typeof answers != "undefined" ? answers[answerIndex] : getEmotionStrings(true)[answerIndex];
+		const answer = {
+			answerIndex,
+			answerText,
+		}
+		pushAnswerForSlide(slideIndex, answerObject);
+		return correct;
 		
 		// post data to server here
 	}
 
-	const setAnswer = (slideIndex, answerIndex, _canProceed = true) => {
-
-		setAnswerForSlide(slideIndex, answerIndex);
+	const submitAnswerObject = (slideIndex, answerObj, _canProceed = true) => {
+		pushAnswerForSlide(slideIndex, answerObj);
 		setCanProceed(_canProceed);
 		setSlideReached(slideNumber+1);
-		// post data to server here
 	}
 
-	const submitVideoAnswer = async(slideIndex, answerIndex, videoTime) => {
-		console.time("SubmitAnswer");
+	const setAnswer = (slideIndex, answerObj, _canProceed = true) => {
+		setAnswerForSlide(slideIndex, answerObj);
+		setCanProceed(_canProceed);
+		setSlideReached(slideNumber+1);
+	}
 
-		pushAnswerForSlide(slideIndex, [answerIndex, videoTime]);
+	const submitVideoAnswer = async(slideIndex, answerObject) => {
+		pushAnswerForSlide(slideIndex, answerObject);
 
-		if(answerIndex == getEmotionStrings().indexOf(slides.slides[slideIndex].params.emotion)){
+		if(answerObject.answerIndex == getEmotionStrings().indexOf(slides.slides[slideIndex].params.emotion)){
 			setCanProceed(true);
 			setSlideReached(slideNumber+1);
 		}
 		return canProceed;
 	}
 
-	const submitTextAnswer = (slideIndex, answer) => {
+	const submitTextAnswer = (slideIndex, answerObject) => {
 		
-		setAnswerForSlide(slideIndex, answer);
+		setAnswerForSlide(slideIndex, answerObject);
+		
 		let _canProceed = false;
+		const answer = answerObject.answerIndex;
 		if(Array.isArray(answer))
 			_canProceed = typeof answer[answer.length-1] == "string" && answer[answer.length-1].length > 0;
 		else
@@ -192,9 +200,21 @@ function TaskPage(props) {
 		
 	}
 
+	const getAnswersSubmitted = (answersSubmitted) => {
+		let answersSubmittedIndexes = new Array(answersSubmitted.length);
+		if(Array.isArray(answersSubmitted))
+			for(const i in answersSubmitted){		
+				if(answersSubmitted[i] != null)
+					answersSubmittedIndexes[i] = answersSubmitted[i].answerIndex;
+			}
+		else{
+			answersSubmittedIndexes = answersSubmitted.answerIndex
+		}
+		return answersSubmittedIndexes;
+	}
+
 	const loadSlide = (deltaIndex) => {
 		let _slideNumber = Math.max(0,slideNumber + deltaIndex);
-		console.log(canProceed, deltaIndex, slideReached, _slideNumber);
 		if(_slideNumber > slides.slides.length){
 			return;
 		}
@@ -254,7 +274,7 @@ function TaskPage(props) {
 								alexImage={images[currentSlide.params.AlexImage]}
 								slideNumber={_slideNumber}
 								submitAnswer={submitAnswer}
-								answersSubmitted={answersSubmittedThisSlide}
+								answersSubmitted={getAnswersSubmitted(answersSubmittedThisSlide)}
 							/>
 		}
 		else if(slideType == "ChooseTheEmotion"){
@@ -269,7 +289,7 @@ function TaskPage(props) {
 								currentSlide={currentSlide}
 								slideNumber={_slideNumber}
 								submitAnswer={submitAnswer}
-								answersSubmitted={answersSubmittedThisSlide}
+								answersSubmitted={getAnswersSubmitted(answersSubmittedThisSlide)}
 							/>
 		}
 		else if(slideType == "EmotionStory"){
@@ -283,7 +303,7 @@ function TaskPage(props) {
 								currentSlide={currentSlide}
 								slideNumber={_slideNumber}
 								submitAnswer={submitAnswer}
-								answersSubmitted={answersSubmittedThisSlide}
+								answersSubmitted={getAnswersSubmitted(answersSubmittedThisSlide)}
 							/>
 		}
 		else if(slideType == "EmotionStoryAdolescent"){
@@ -292,7 +312,7 @@ function TaskPage(props) {
 								currentSlide={currentSlide}
 								slideNumber={_slideNumber}
 								setAnswer={setAnswer}
-								answersSubmitted={answersSubmittedThisSlide}
+								answersSubmitted={getAnswersSubmitted(answersSubmittedThisSlide)}
 							/>
 		}
 		else if(slideType == "EmotionalExperiencePage"){
@@ -314,7 +334,7 @@ function TaskPage(props) {
 								image={image}
 								slideNumber={_slideNumber}
 								submitAnswer={submitTextAnswer}
-								answerSubmitted={answersSubmittedThisSlide}
+								answerSubmitted={getAnswersSubmitted(answersSubmittedThisSlide)}
 							/>
 		}
 		else if(slideType == "EmotionalVideo"){
@@ -327,7 +347,7 @@ function TaskPage(props) {
 								currentSlide={currentSlide}
 								video={video}
 								image={image}
-								answersSubmitted={answersSubmittedThisSlide}
+								answersSubmitted={getAnswersSubmitted(answersSubmittedThisSlide)}
 								slideNumber={_slideNumber}
 								submitAnswer={submitVideoAnswer}
 								key={_slideNumber}
@@ -341,7 +361,7 @@ function TaskPage(props) {
 			currentPage = 	<PartsOfTheFacePage
 								currentSlide={currentSlide}
 								images={_images}
-								answersSubmitted={answersSubmittedThisSlide}
+								answersSubmitted={getAnswersSubmitted(answersSubmittedThisSlide)}
 								slideNumber={_slideNumber}
 								submitAnswer={submitAnswer}
 								key={_slideNumber}
@@ -357,7 +377,7 @@ function TaskPage(props) {
 								image={image}
 								slideNumber={_slideNumber}
 								submitAnswer={submitTextAnswer}
-								answerSubmitted={answersSubmittedThisSlide}
+								answerSubmitted={getAnswersSubmitted(answersSubmittedThisSlide)}
 							/>
 							
 		}
@@ -372,7 +392,7 @@ function TaskPage(props) {
 								multiChoice={true}
 								slideNumber={_slideNumber}
 								submitAnswer={submitAnswer}
-								answerSubmitted={answersSubmittedThisSlide}
+								answerSubmitted={getAnswersSubmitted(answersSubmittedThisSlide)}
 							/>
 			
 		}
@@ -424,7 +444,7 @@ function TaskPage(props) {
 			currentPage = 	<QuizPage
 								currentSlide={currentSlide}
 								slideNumber={_slideNumber}
-								answersSubmitted={answersSubmittedThisSlide}
+								answersSubmitted={getAnswersSubmitted(answersSubmittedThisSlide)}
 								submitAnswer={setAnswer}
 							/>
 		}
@@ -450,8 +470,8 @@ function TaskPage(props) {
 								currentSlide={currentSlide}
 								slideNumber={_slideNumber}
 								images={_images}
-								submitAnswer={setAnswer}
-								chosen={answersSubmittedThisSlide}
+								submitAnswer={submitAnswerObject}
+								chosen={getAnswersSubmitted(answersSubmittedThisSlide)}
 								key={_slideNumber}
 							/>
 		}
@@ -472,10 +492,20 @@ function TaskPage(props) {
 	}
 
 	
-	console.time("render");
+	const submitData = async() => {
+		const data={
+			answersSubmitted,
+			taskNumber: props.slides.index + 1,
+			taskName: props.slides.name,
+			sessionNumber: props.sessionNumber
+		}
+		const result = axios.post("/user/submitTaskData", data);
+	}
 
 	// if you finish a task, return to the session menu
 	if(slideNumber == slides.slides.length){
+
+		submitData();
 		return <Redirect to="/session" push />
 	}
 
@@ -486,9 +516,6 @@ function TaskPage(props) {
 	}
 	let _canProceed = canProceed;
 
-	console.log("**" + _canProceed);
-
-	console.timeEnd("render");
 	return (
 		<div className={classes.page}>
 			<img src={arrow} className={classNames({[globalStyle.arrow]: true, [globalStyle.inactive]: slideNumber == 0, [globalStyle.left] : true})}  onClick={() => loadSlide(-1)}/>
@@ -514,7 +541,6 @@ function TaskPage(props) {
 }
 
 let propsAreEqual = (prevProps, nextProps) => {
-	console.log("test");
 	return true;
 }
 

@@ -8,7 +8,7 @@ import nl2br from 'react-newline-to-break';
 import globalStyle from '../../Assets/css/globalStyles.css';
 import classes from "./howDoTheyFeelPage.css";
 
-import {language, ageType} from '../../config/tasks.js';
+import {language, ageType, getEmotionStrings} from '../../config/tasks.js';
 import { getGender } from "../../config/People.js";
 
 import {getHeaderClass, getSubHeaderClass} from "../../config/CSSTextClassBoundrys"
@@ -24,7 +24,11 @@ function HowDoTheyFeelPage(props){
 	
 	let answer = (answerIndex) => {
 		alexPopupRef.current.openAlerts(answerIndex == correctAnswer);
-		props.submitAnswer(props.slideNumber, answerIndex);
+		const answerObject = {
+			answerIndex,
+			answerText: getEmotionStrings()[answerIndex]
+		}
+		props.submitAnswer(props.slideNumber, answerObject);
 	}
 
 	let helpClick = () => {
@@ -37,7 +41,6 @@ function HowDoTheyFeelPage(props){
 	const header = language.howDoesNameFeel(person);
 	const AlexSpeechBubble = language.HowDoTheyFeel.HowDoTheyFeelHint;
 	const {answersSubmitted} = props;
-
 
 
 	for(let i = 0; i < answers.length; i++){

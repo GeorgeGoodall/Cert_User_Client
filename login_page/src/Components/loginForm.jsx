@@ -69,7 +69,6 @@ const LoginForm = (props) => {
             
             setLoggedIn(true);
             setFeedbackShowing(true);
-            console.log(result.data);
             let loggedInText = (
                 <React.Fragment>
                     {lang.LoggedInAs} <span className={"redText"}></span>{result.data.user.name || result.data.user.userID}<a href="#" onClick={logout}>({lang.logout})</a><br/>           

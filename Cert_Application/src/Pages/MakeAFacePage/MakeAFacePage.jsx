@@ -33,8 +33,19 @@ const MakeAFacePage = React.memo( (props) => {
 	
 
 	const answered = (canProceed, chosen) => {
-		props.submitAnswer(props.slideNumber, chosen, canProceed);
-		console.log(typeof chosen[0]);
+		let chosenText = [chosen.length];
+
+		if(chosen[0] == null || chosen[1] == null)
+			return;
+		
+		chosenText[0] = emotions[chosen[0] % 2];
+		chosenText[1] = emotions[(chosen[1] + ((props.slideNumber + 1) % 2)) % 2];
+		
+		const answerObject = {
+			answerIndex: chosen,
+			answerText: chosenText
+		}
+		props.submitAnswer(props.slideNumber, answerObject, canProceed);
 		if(canProceed){
 			setHeader(language.correct_alert);
 			alexPopupRef.current.openAlerts(true);
@@ -50,9 +61,6 @@ const MakeAFacePage = React.memo( (props) => {
 			}
 		}
 	}
-
-	console.log("Render MakeAFace", header);
-
 
 	let correctPopupText = language.correct_alert;
 	if(typeof answer != "undefined")
