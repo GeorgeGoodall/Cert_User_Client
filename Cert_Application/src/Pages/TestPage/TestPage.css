@@ -1,0 +1,45 @@
+.page {
+	display: flex;
+	
+	justify-content: space-between;
+	padding: 0% 10%;
+	max-height: calc(100%-121px);
+}
+
+.pageContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+.middleColumn {
+	flex-basis: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+@media only screen and (max-width: 1500px) {
+	.page {
+		padding: 0px 4%;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.page {
+		padding: 0px;
+	}
+	.middleColumn {
+		flex-basis: 100%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.page {
+		padding: 0px;
+	}
+}
+

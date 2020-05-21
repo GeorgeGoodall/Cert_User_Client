@@ -529,6 +529,8 @@ export const English = {
 	pleaseSelectASession: "Please select a session or the help module to start:",
 	sessionMenuHeader: "Session {0} menu",
 	sessionId: "Session {0}",
+	pretest: "Pretest",
+	posttest: "Posttest",
 	home: "Home",
     help: "Help",
 

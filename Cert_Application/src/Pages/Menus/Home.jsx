@@ -23,6 +23,10 @@ class Home extends Component{
 				    <Link to="/Session" ><Button className={classes.menuButton}  text={language.getSessionId(2)} onClickHandler={() => this.props.setSession(2)}/></Link>
 				    <Link to="/Session" ><Button className={classes.menuButton}  text={language.getSessionId(3)} onClickHandler={() => this.props.setSession(3)}/></Link>
 				</div>
+				<div>
+					<Link to="/test" ><Button className={classes.menuButton}  text={language.pretest} onClickHandler={() => this.props.setTest("Pretest")}/></Link>
+				    <Link to="/test" ><Button className={classes.menuButton}  text={language.posttest} onClickHandler={() => this.props.setTest("Posttest")}/></Link>
+				</div>
 			</div>
 		);		
 	}

@@ -3,10 +3,11 @@ import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import axios from 'axios'
 
-import getTasks from "./config/tasks.js"
+import getTasks, {getTests} from "./config/tasks.js"
 
 import Header from "./Components/Header/Header.jsx";
 import TaskPage from "./Pages/TaskPage/TaskPage.jsx";
+import TestPage from "./Pages/TestPage/TestPage.jsx";
 import SessionMenu from "./Pages/Menus/SessionMenu.jsx";
 import Home from "./Pages/Menus/Home.jsx";
 import Settings from "./Pages/SettingsPage/Settings";
@@ -27,8 +28,7 @@ class App extends Component{
 
 	constructor(props){
 		super(props);
-
-		this.tasks = getTasks();
+		this.tests = getTests();
 
 		let windowWidth = typeof window !== "undefined" ? window.outerWidth : 0;
 	    let windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
@@ -36,6 +36,7 @@ class App extends Component{
 		this.state = ({
 			"session":localStorage.getItem('session') != null ? localStorage.getItem('session') : 1,
 			"task":localStorage.getItem('task') != null ? localStorage.getItem('task') : 0,
+			"test": localStorage.getItem('test') != null ? localStorage.getItem('test') : "Pretest",
 			"Language": localStorage.getItem('language') != null ? localStorage.getItem('language') : "English",
 			"tasks":getTasks(),
 		});
@@ -75,7 +76,14 @@ class App extends Component{
   		this.setState((pastState) => {
   			return {task};
   		});
-  	}
+	}
+	  
+	setTest(index) {
+		let test = index;
+		this.setState((pastState) => {
+			return {test};
+		});
+	}
 
 	render(){
 
@@ -107,14 +115,16 @@ class App extends Component{
 				<Switch>
 					<Route path="/(|home|settings)" component={() => <Header getTasks={this.getLatestTaskArray.bind(this)} windowSize={this.state.windowSize}/> } />
 					<Route path="/(Session)" component={() => <Header getTasks={this.getLatestTaskArray.bind(this)} session={session} windowSize={this.state.windowSize}/> } />
-					<Route path="/(task)" component={() => <Header getTasks={this.getLatestTaskArray.bind(this)} session={session} task={this.state.tasks[sessionId][task].name} windowSize={this.state.windowSize}/> } />
+					<Route path="/(task)" component={() => <Header getTasks={this.getLatestTaskArray.bind(this)} session={session} task={slides.name} windowSize={this.state.windowSize}/> } />
+					<Route path="/(test)" component={() => <Header getTasks={this.getLatestTaskArray.bind(this)} windowSize={this.state.windowSize}/> } />
 				</Switch>
 			  	
 			  	<div>
 			  		<Switch>
-			  			<Route path="/(home|)" component={()=> <Home setSession={this.setSession.bind(this)}/> } />
-			  			<Route path="/Session" component={()=> <SessionMenu session={session} tasks={this.state.tasks[sessionId]} setTask={this.setTask.bind(this)}/> } />
+			  			<Route path="/(home|)" component={()=> <Home setSession={this.setSession.bind(this)} setTask={this.setTask.bind(this)} setTest={this.setTest.bind(this)}/> } />
+			  			<Route path="/Session" component={()=> <SessionMenu session={session} tasks={this.state.tasks[sessionId]} setTask={this.setTask.bind(this)} tests={this.tests}/> } />
 			  			<Route path="/task" component={()=> <TaskPage slides={slides} sessionNumber={this.state.session} /> } />
+						<Route path="/test" component={()=> <TestPage type={this.state.test}/>} />
 						<Route path="/settings" component={()=> <Settings /> } />
 			  		</Switch>
 			  		

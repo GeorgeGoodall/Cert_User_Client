@@ -26,6 +26,7 @@ function SessionMenu(props){
 				})
 			}
 			</div>
+			
 		</div>
 	);		
 

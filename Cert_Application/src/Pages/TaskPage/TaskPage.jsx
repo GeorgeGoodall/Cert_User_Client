@@ -44,10 +44,12 @@ function importAll(r) {
 
 function TaskPage(props) {
 	
+	
+
 	//#region state
 	let _answersSubmitted = []
 	for(let i = 0; i < props.slides.slides.length; i++){
-		if(props.slides.name == "Quiz"){
+		if(slides.name == "Quiz"){
 			_answersSubmitted.push(-1);	
 		}
 		else{
