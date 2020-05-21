@@ -14,7 +14,6 @@ import classNames from 'classnames';
 
 import {getTests} from '../../config/tasks.js';
 import Button from '../../Components/Button/Button.jsx';
-import EmotionalStoriesAdolescentPage from '../EmotionStories/EmotionalStoriesAdolescentPage.jsx';
 
 const images = {};
 importAll(require.context('../../Assets/Images/tests/', false, /\.(png|jpe?g|svg|mp4)$/));

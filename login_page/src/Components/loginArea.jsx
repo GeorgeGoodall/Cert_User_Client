@@ -9,8 +9,7 @@ const LoginArea = (props) => {
   const {lang} = props;
 
   let [spinner, setSpinner] = useState(false);
-  let [iLoggedIn, setILoggedIn] = useState(false);
-  const [authData, setauthData] = useState({});
+  const [authData, setauthData] = useState({institution: null, user: null});
 
   useEffect(async()=>{
     getAuthData();
@@ -22,13 +21,20 @@ const LoginArea = (props) => {
   const getAuthData = async() => {
     const _authData = await axios.get("/checkCookies");
     setauthData(_authData.data);
-    if(_authData.data.institution != null && typeof _authData.data.institution.name != "undefined")
-      setILoggedIn(true)
   }
 
   const onLoginCallback = (status) => {
-    setILoggedIn(status);
+    getAuthData();
   };
+
+  let institutionControls = <React.Fragment></React.Fragment>;
+  if(authData.institution != null){
+    institutionControls = (
+      <div className={"userLogin"}>
+        <InstitutionControls setSpinner={setSpinner} authData={authData} getAuthData={getAuthData} lang={lang}/>
+      </div>
+    )
+  }
 
   return (
     <div className="loginArea">
@@ -41,11 +47,8 @@ const LoginArea = (props) => {
             onLoginCallback={onLoginCallback}
             authData={authData.institution}
             lang={lang}
-        />
-
-      <div className={"userLogin"} style={iLoggedIn ? { display: "block" } : { display: "none" }}>
-        <InstitutionControls setSpinner={setSpinner} authData={authData} getAuthData={getAuthData} lang={lang}/>
-      </div>
+        /> 
+        {institutionControls}      
     </div>
   );
 };

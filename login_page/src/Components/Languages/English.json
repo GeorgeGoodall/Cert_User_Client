@@ -15,6 +15,7 @@
     "createNewUser": "Create new user" ,
     "settings": "Settings",
     "launchCert": "Launch Cert",
+    "launchFer": "Launch FER",
     "yourPasswordsDontMatch":"Your passwords dont match",
     "confirmPassword": "Confirm Password",
     "changePassword": "Change Password",

@@ -9,7 +9,7 @@ import { Redirect } from 'react-router-dom'
 
 const InstitutionControls = (props) => {
 
-    const {setSpinner, lang} = props;
+    const {setSpinner, lang, authData} = props;
 
     const [createNewUserShowing, setCreateNewUserShowing] = useState(false);
     const [userLoginShowing, setUserLoginShowing] = useState(false);
@@ -18,13 +18,7 @@ const InstitutionControls = (props) => {
     const [LoggedIn, setLoggedIn] = useState(true);
     const [userAgreementOpen, setuserAgreementOpen] = useState(false);
 
-    const [authData, setauthData] = useState({});
 
-    useEffect(() => {
-        if(props.authData){
-            setauthData(props.authData);
-        }
-    });
 
     
     const loginTabClick = (tabIndex) => {
@@ -69,9 +63,10 @@ const InstitutionControls = (props) => {
 
     return (
         <div>
+            <div onClick={() => setuserAgreementOpen(true)} style={{display: authData.institution.type == 4 || true ? "block" : "none"}} className="red-button">{lang.launchFer}</div>
             <div className={"tabs"} >
-                <div className={"tabButton " + (userLoginShowing ? "selected" : "")} onClick={()=>loginTabClick(0)}>{lang.userLogin}</div>
-                <div className={"tabButton " + (createNewUserShowing ? "selected" : "")} onClick={()=>loginTabClick(1)}>{lang.createNewUser}</div>
+                <div style={{display: authData.institution.type != 4 ? "block" : "none"}} className={"tabButton " + (userLoginShowing ? "selected" : "")} onClick={()=>loginTabClick(0)}>{lang.userLogin}</div>
+                <div style={{display: authData.institution.type != 4 ? "block" : "none"}} className={"tabButton " + (createNewUserShowing ? "selected" : "")} onClick={()=>loginTabClick(1)}>{lang.createNewUser}</div>
                 <div className={"tabButton " + (settingsShowing ? "selected" : "")} onClick={()=>loginTabClick(2)}>{lang.settings}</div>
             </div>
             <div className="institutionControlsTab" style={createNewUserShowing ? {display: "block"} : {display: "none"}}>
