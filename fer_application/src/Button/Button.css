@@ -1,0 +1,90 @@
+.button, .buttonInactive {
+	padding: 0px 25px;
+	margin: 20px auto;
+	text-align: center;
+	background-color: darkcyan;
+	color:white;
+	border-radius: 5px;
+	box-shadow: 8px 5px 9px #9E9E9E;
+	cursor: pointer;
+	font-size: 10px;
+	min-width: 58px;
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+	display: flex;
+	align-items: center;
+}
+
+.button h1 {
+	margin: 0 auto;
+}
+.buttonInactive h1 {
+	margin: 0 auto;
+}
+
+
+.buttonInactive {
+	background-color: grey;
+	cursor: default;
+	opacity: 0.5;
+}
+
+.selected {
+	opacity: 1;
+	background-color: lightgreen;
+	color: black;
+}
+
+.button:hover {
+	background-color: lightgreen;
+	color: black;
+	-webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out; 
+}
+
+@media only screen and (max-width: 900px) {
+	.button, .buttonInactive {
+		padding: 0px 5px;
+		font-size: 8px;
+		min-width: 40px;
+		margin: 5px auto;
+		width: 42%;
+	}
+}
+
+
+@media only screen and (max-width: 600px) {
+	.button, .buttonInactive {
+		padding: 0px 5px;
+		font-size: 8px;
+		min-width: 40px;
+		margin: 5px auto;
+		width: 42%;
+	}
+
+	.button h1 {
+		margin: 5px auto;
+		font-size: 5vw;
+	}
+	.buttonInactive h1 {
+		margin: 5px auto;
+		font-size: 5vw;
+	}
+}
+
+@media only screen and (max-width: 420px) {
+	.button, .buttonInactive {
+		min-width: 30px;
+	}
+	.button h1 {
+		margin: 5px auto;
+		font-size: 4vw;
+	}
+	.buttonInactive h1 {
+		margin: 5px auto;
+		font-size: 4vw;
+	}
+}

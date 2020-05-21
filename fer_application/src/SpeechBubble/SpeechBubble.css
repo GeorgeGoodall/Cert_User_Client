@@ -1,0 +1,56 @@
+
+.bubbleContainer {
+	max-width: 700px;
+	width: 500%;
+}
+
+.bubbleMain {
+	min-height: 20px;
+	padding: 20px;
+	text-align: center;
+	background-color: #fff;
+	border: 8px solid #666;
+	-webkit-border-radius: 30px; 
+  	-moz-border-radius: 30px; 
+  	border-radius: 30px; 
+
+  	-webkit-box-shadow: 10px 10px 10px #888; 
+  	-moz-box-shadow: 10px 10px 10px #888; 
+  	box-shadow: 10px 10px 10px #888; 
+
+  	margin: 0px;
+
+  	font-size: 22px;
+}
+
+@media only screen and (max-width: 1200px) {
+	.bubbleMain {
+		font-size: 18px;
+		padding: 15px
+	}
+	.bubbleContainer {
+		max-width: 700px;
+		width: 500%;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.bubbleMain {
+		font-size: 18px;
+		padding: 10px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.bubbleMain {
+		font-size: 14px;
+		padding: 5px;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.bubbleMain {
+		font-size: 14px;
+		padding: 5px;
+	}
+}
