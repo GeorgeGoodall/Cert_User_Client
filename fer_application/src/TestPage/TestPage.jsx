@@ -41,8 +41,9 @@ const TestPage = (props) => {
 			answersSubmitted
 		}
 
-		const result = axios.post("/user/submitTaskData", data)
+		const result = axios.post("/user/submitFerData", data)
 		// navigate back to login page
+		window.location.href = "/login"
 	}
 
     const nextSlide = () => {
@@ -55,6 +56,9 @@ const TestPage = (props) => {
 		}
 		else{
 			setSlideNumber(_slideNumber);
+		}
+		if(_slideNumber == pages.length -1){
+			pages[pages.length-1] = getOutroPage();
 		}
 	}
 
@@ -79,18 +83,21 @@ const TestPage = (props) => {
 		return currentPage;
 	}
 	
-	const getOutroPage = () => {
-		const currentSlide = {
-			params: {
-				header: "Outro page",
-				AlexSpeechBubble: "speech test"
-			}
+	const [score, setscore] = useState(0);
+	const currentSlide = {
+		params: {
+			header: "",
+			AlexSpeechBubble: "You have finished the test! Close this alert to return to the menu. \n\nYou scored: " + 0 + "%"
 		}
+	}
+	const [outroSlide, setoutroSlide] = useState(currentSlide);
+	const getOutroPage = () => {
+		
 
 		let currentPage = 	
 			<React.Fragment>
 				<InformationPage 
-					currentSlide={currentSlide}	
+					currentSlide={outroSlide}
 				/>
 				<Button onClickHandler={nextSlide} text={"Return"}/>
 			</React.Fragment>
@@ -99,11 +106,24 @@ const TestPage = (props) => {
 		return currentPage;
 	}
          
+    		
     const setAnswerForSlide = (slideIndex, answer) => {
 		let temp = [...answersSubmitted];
 		const answerCopy = JSON.parse(JSON.stringify(answer));
 		temp[slideIndex] = [answerCopy];
 		setAnswersSubmitted(temp);
+		if(answer.correct){
+			setscore(score+1);
+			let scorePercent = (score+1) * 100 / slides.task_array.length;
+			console.log(scorePercent.toFixed() + "%");
+			const currentSlide = {
+				params: {
+					header: "",
+					AlexSpeechBubble: "You have finished the test! Close this alert to return to the menu. \n\nYou scored: " + scorePercent.toFixed() + "%"
+				}
+			}
+			setoutroSlide(currentSlide);
+		}
 		nextSlide();
     }
     

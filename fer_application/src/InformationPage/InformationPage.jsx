@@ -24,6 +24,9 @@ class InformationPage extends Component{
 
 
 	componentWillReceiveProps(nextProps){
+
+		console.log(nextProps)
+
 		let re = /<br>|<\/br>/gi;
 		let header = nextProps.currentSlide.params.header.replace(re,"\n");
 		let text = nextProps.currentSlide.params.AlexSpeechBubble.replace(re,"\n");
@@ -78,6 +81,8 @@ class InformationPage extends Component{
 		}
 
 		const {header, text, loadSlide, slideNumber, slideCount, alexFace} = this.state;
+
+		console.log(text)
 
 		return (
 			<React.Fragment>	

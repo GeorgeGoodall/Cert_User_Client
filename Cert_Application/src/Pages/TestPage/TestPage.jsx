@@ -85,11 +85,12 @@ const TestPage = (props) => {
 		return currentPage;
 	}
 	
+	const [score, setscore] = useState(0);
 	const getOutroPage = () => {
 		const currentSlide = {
 			params: {
-				header: "Outro page",
-				AlexSpeechBubble: "speech test"
+				header: "",
+				AlexSpeechBubble: "You have finished the test! Close this alert to return to the menu. \n\nYou scored: " + {score} + "%"
 			}
 		}
 
@@ -104,12 +105,18 @@ const TestPage = (props) => {
 
 		return currentPage;
 	}
-         
+		
+	let correct = 0;
     const setAnswerForSlide = (slideIndex, answer) => {
 		let temp = [...answersSubmitted];
 		const answerCopy = JSON.parse(JSON.stringify(answer));
 		temp[slideIndex] = [answerCopy];
 		setAnswersSubmitted(temp);
+		if(answer.correct){
+			correct++;
+		}
+		setscore(correct / (slides.task_array.length));
+
 		nextSlide();
     }
     

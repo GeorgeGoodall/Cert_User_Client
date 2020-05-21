@@ -53,7 +53,7 @@ export const LanguageClass = (language) => {
 	language.getEmotionStringsEnglish = (withNone = false) => {
 		let emotionArray = ["angry", "sad", "scared", "happy"]
 		if(withNone)
-			emotionArray.push("no emotion");
+			emotionArray.push("no_emotion");
 		return emotionArray;
 	};
 	language.getWhatEmotionHint = (emotion, gender, ageType = "child", featuresToReturn = ["eyes", "eyebrows", "mouth"]) => {

@@ -6349,294 +6349,299 @@ const getTests = () => {
 				},
 				{
 					imageName: "A2.jpg",
+					emotion: "scared",
+					temp_name: "low"
+				},
+				{
+					imageName: "A3.jpg",
 					emotion: "angry", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A3.jpg",
+					imageName: "A4.jpg",
 					emotion: "no_emotion", 
 					temp_name: "n/a"
 				},
 				{
-					imageName: "A4.jpg",
+					imageName: "A5.jpg",
 					emotion: "happy", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A5.jpg",
+					imageName: "A6.jpg",
 					emotion: "sad", 
 					temp_name: "low"
 				},
 				{
-					imageName: "A6.jpg",
+					imageName: "A7.jpg",
 					emotion: "angry", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A7.jpg",
+					imageName: "A8.jpg",
 					emotion: "scared", 
 					temp_name: "low"
 				},
 				{
-					imageName: "A8.jpg",
+					imageName: "A9.jpg",
 					emotion: "no_emotion", 
 					temp_name: "n/a"
 				},
 				{
-					imageName: "A9.jpg",
+					imageName: "A10.jpg",
 					emotion: "sad", 
 					temp_name: "low"
 				},
 				{
-					imageName: "A10.jpg",
-					emotion: "angry", 
-					temp_name: "high"
-				},
-				{
 					imageName: "A11.jpg",
-					emotion: "scared", 
+					emotion: "angry", 
 					temp_name: "high"
 				},
 				{
 					imageName: "A12.jpg",
-					emotion: "no_emotion", 
-					temp_name: "n/a"
-				},
-				{
-					imageName: "A13.jpg",
-					emotion: "happy", 
-					temp_name: "low"
-				},
-				{
-					imageName: "A14.jpg",
 					emotion: "scared", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A15.jpg",
+					imageName: "A13.jpg",
+					emotion: "no_emotion", 
+					temp_name: "n/a"
+				},
+				{
+					imageName: "A14.jpg",
 					emotion: "happy", 
 					temp_name: "low"
 				},
 				{
-					imageName: "A16.jpg",
-					emotion: "sad", 
+					imageName: "A15.jpg",
+					emotion: "scared", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A17.jpg",
+					imageName: "A16.jpg",
 					emotion: "happy", 
+					temp_name: "low"
+				},
+				{
+					imageName: "A17.jpg",
+					emotion: "sad", 
 					temp_name: "high"
 				},
 				{
 					imageName: "A18.jpg",
+					emotion: "happy", 
+					temp_name: "high"
+				},
+				{
+					imageName: "A19.jpg",
 					emotion: "no_emotion", 
 					temp_name: "n/a"
 				},
 				{
-					imageName: "A19.jpg",
-					emotion: "angry", 
-					temp_name: "low"
-				},
-				{
 					imageName: "A20.jpg",
-					emotion: "scared", 
+					emotion: "angry", 
 					temp_name: "low"
 				},
 				{
 					imageName: "A21.jpg",
-					emotion: "no_emotion", 
-					temp_name: "n/a"
+					emotion: "scared", 
+					temp_name: "low"
 				},
 				{
 					imageName: "A22.jpg",
-					emotion: "happy", 
-					temp_name: "low"
+					emotion: "no_emotion", 
+					temp_name: "n/a"
 				},
 				{
 					imageName: "A23.jpg",
 					emotion: "happy", 
-					temp_name: "high"
-				},
-				{
-					imageName: "A24.jpg",
-					emotion: "sad", 
 					temp_name: "low"
 				},
 				{
+					imageName: "A24.jpg",
+					emotion: "happy", 
+					temp_name: "high"
+				},
+				{
 					imageName: "A25.jpg",
-					emotion: "angry", 
+					emotion: "sad", 
 					temp_name: "low"
 				},
 				{
 					imageName: "A26.jpg",
+					emotion: "angry", 
+					temp_name: "low"
+				},
+				{
+					imageName: "A27.jpg",
 					emotion: "no_emotion", 
 					temp_name: "n/a"
 				},
 				{
-					imageName: "A27.jpg",
-					emotion: "scared", 
-					temp_name: "high"
-				},
-				{
 					imageName: "A28.jpg",
-					emotion: "sad", 
+					emotion: "scared", 
 					temp_name: "high"
 				},
 				{
 					imageName: "A29.jpg",
+					emotion: "sad", 
+					temp_name: "high"
+				},
+				{
+					imageName: "A30.jpg",
 					emotion: "angry", 
 					temp_name: "low"
 				},
 				{
-					imageName: "A30.jpg",
+					imageName: "A31.jpg",
 					emotion: "no_emotion", 
 					temp_name: "n/a"
 				},
 				{
-					imageName: "A31.jpg",
+					imageName: "A32.jpg",
 					emotion: "happy", 
 					temp_name: "low"
 				},
 				{
-					imageName: "A32.jpg",
+					imageName: "A33.jpg",
 					emotion: "sad", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A33.jpg",
+					imageName: "A34.jpg",
 					emotion: "angry", 
 					temp_name: "low"
 				},
 				{
-					imageName: "A34.jpg",
-					emotion: "scared", 
-					temp_name: "high"
-				},
-				{
 					imageName: "A35.jpg",
-					emotion: "sad", 
+					emotion: "scared", 
 					temp_name: "high"
 				},
 				{
 					imageName: "A36.jpg",
-					emotion: "scared", 
-					temp_name: "low"
+					emotion: "sad", 
+					temp_name: "high"
 				},
 				{
 					imageName: "A37.jpg",
-					emotion: "angry", 
+					emotion: "scared", 
 					temp_name: "low"
 				},
 				{
 					imageName: "A38.jpg",
+					emotion: "angry", 
+					temp_name: "low"
+				},
+				{
+					imageName: "A39.jpg",
 					emotion: "sad", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A39.jpg",
+					imageName: "A40.jpg",
 					emotion: "scared", 
 					temp_name: "low"
 				},
 				{
-					imageName: "A40.jpg",
+					imageName: "A41.jpg",
 					emotion: "no_emotion", 
 					temp_name: "n/a"
 				},
 				{
-					imageName: "A41.jpg",
-					emotion: "angry", 
-					temp_name: "high"
-				},
-				{
 					imageName: "A42.jpg",
-					emotion: "happy", 
+					emotion: "angry", 
 					temp_name: "high"
 				},
 				{
 					imageName: "A43.jpg",
+					emotion: "happy", 
+					temp_name: "high"
+				},
+				{
+					imageName: "A44.jpg",
 					emotion: "no_emotion", 
 					temp_name: "n/a"
 				},
 				{
-					imageName: "A44.jpg",
-					emotion: "angry", 
-					temp_name: "high"
-				},
-				{
 					imageName: "A45.jpg",
-					emotion: "scared", 
+					emotion: "angry", 
 					temp_name: "high"
 				},
 				{
 					imageName: "A46.jpg",
+					emotion: "scared", 
+					temp_name: "high"
+				},
+				{
+					imageName: "A47.jpg",
 					emotion: "sad", 
 					temp_name: "low"
 				},
 				{
-					imageName: "A47.jpg",
+					imageName: "A48.jpg",
 					emotion: "happy", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A48.jpg",
-					emotion: "sad", 
-					temp_name: "low"
-				},
-				{
 					imageName: "A49.jpg",
-					emotion: "happy", 
+					emotion: "sad", 
 					temp_name: "low"
 				},
 				{
 					imageName: "A50.jpg",
+					emotion: "happy", 
+					temp_name: "low"
+				},
+				{
+					imageName: "A51.jpg",
 					emotion: "no_emotion", 
 					temp_name: "n/a"
 				},
 				{
-					imageName: "A51.jpg",
+					imageName: "A52.jpg",
 					emotion: "happy", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A52.jpg",
+					imageName: "A53.jpg",
 					emotion: "sad", 
 					temp_name: "low"
 				},
 				{
-					imageName: "A53.jpg",
+					imageName: "A54.jpg",
 					emotion: "no_emotion", 
 					temp_name: "n/a"
 				},
 				{
-					imageName: "A54.jpg",
-					emotion: "scared", 
-					temp_name: "low"
-				},
-				{
 					imageName: "A55.jpg",
-					emotion: "angry", 
+					emotion: "scared", 
 					temp_name: "low"
 				},
 				{
 					imageName: "A56.jpg",
+					emotion: "angry", 
+					temp_name: "low"
+				},
+				{
+					imageName: "A57.jpg",
 					emotion: "no_emotion", 
 					temp_name: "n/a"
 				},
 				{
-					imageName: "A57.jpg",
+					imageName: "A58.jpg",
 					emotion: "scared", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A58.jpg",
+					imageName: "A59.jpg",
 					emotion: "angry", 
 					temp_name: "high"
 				},
 				{
-					imageName: "A59.jpg",
+					imageName: "A60.jpg",
 					emotion: "happy",
 					temp_name: "low",
-
+	
 				}
 			
 			]    

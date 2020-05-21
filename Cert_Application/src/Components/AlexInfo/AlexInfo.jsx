@@ -8,7 +8,6 @@ import classes from "./AlexInfo.css";
 class AlexInfo extends Component{
 	constructor(props){
 		super(props);
-		this.state = ({"text":props.text});
 	}
 
 	render(){
@@ -21,7 +20,7 @@ class AlexInfo extends Component{
 			<div className={classes.alexInfo}>
 				<div className={classes.alexInfoContainer}>
 			    	<img className={classes.alexFace} src={alexFaceImage} key={alexFaceImage}/>
-			    	<SpeechBubble maxWidth={this.props.maxWidth} text={this.state.text} key={this.props.slideNumber}/>
+			    	<SpeechBubble maxWidth={this.props.maxWidth} text={this.props.text} key={this.props.slideNumber}/>
 				</div>
 			</div>
 		);		
