@@ -27,7 +27,7 @@ const LoginForm = (props) => {
 
     const logout = () => {
         setLoggedIn(false);
-        onLoginCallback(false);
+        //onLoginCallback(false);
         setFeedback("");
         // ToDo: delete cookies
     }

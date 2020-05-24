@@ -107,7 +107,11 @@ class App extends Component{
 
 		let sessionId = "Session"+session.toString();
 		
+		console.log(sessionId, task)
+
 		let slides = this.state.tasks[sessionId][task];
+
+		console.log(slides)
 
 
 	  	return (

@@ -15,8 +15,9 @@ const InstitutionControls = (props) => {
     const [userLoginShowing, setUserLoginShowing] = useState(false);
     const [settingsShowing, setsettingsShowing] = useState(false);
 
-    const [LoggedIn, setLoggedIn] = useState(true);
+    const [LoggedIn, setLoggedIn] = useState(false);
     const [userAgreementOpen, setuserAgreementOpen] = useState(false);
+
 
 
 
@@ -42,7 +43,6 @@ const InstitutionControls = (props) => {
     }
 
     const onLoginCallback = (status) => {
-        
         setLoggedIn(status);
     }
 
@@ -56,6 +56,21 @@ const InstitutionControls = (props) => {
         }
     }
 
+    const launchFer = async() => {
+        const result = await axios.post('/institution/acceptUserAgreement')
+        if(result.status == 200){
+            window.location.href = '/fer';
+        }
+        else{
+            window.location.href = "/login"; //handle this better
+        }
+    }
+
+        
+    let userAgreementOnAcceptFunction = launchCert
+    if(authData.institution.type == 4)
+        userAgreementOnAcceptFunction = launchFer
+
     const onCreateUser = () => {
         props.getAuthData();
         loginTabClick(0);
@@ -63,7 +78,7 @@ const InstitutionControls = (props) => {
 
     return (
         <div>
-            <div onClick={() => setuserAgreementOpen(true)} style={{display: authData.institution.type == 4 || true ? "block" : "none"}} className="red-button">{lang.launchFer}</div>
+            <div onClick={() => {setuserAgreementOpen(true)}} style={{display: authData.institution.type == 4 ? "block" : "none"}} className="red-button">{lang.launchFer}</div>
             <div className={"tabs"} >
                 <div style={{display: authData.institution.type != 4 ? "block" : "none"}} className={"tabButton " + (userLoginShowing ? "selected" : "")} onClick={()=>loginTabClick(0)}>{lang.userLogin}</div>
                 <div style={{display: authData.institution.type != 4 ? "block" : "none"}} className={"tabButton " + (createNewUserShowing ? "selected" : "")} onClick={()=>loginTabClick(1)}>{lang.createNewUser}</div>
@@ -76,17 +91,17 @@ const InstitutionControls = (props) => {
                 <LoginForm idLable={lang.id} APILoginCall={'/user/login'} setSpinner={setSpinner} onLoginCallback={onLoginCallback} authData={authData.user} lang={lang}/>
                 <div className={"userControls"} style={{display: LoggedIn ? "block" : "none"}}> 
                     <div onClick={() => setuserAgreementOpen(true)} className="red-button">{lang.launchCert}</div>
-                    <UserAgreement 
-                        isOpen={userAgreementOpen}
-                        setOpen={setuserAgreementOpen}
-                        onAccept={launchCert}
-                        lang={lang}
-                    />
                 </div>
             </div>
             <div className="institutionControlsTab" style={settingsShowing ? {display: "block"} : {display: "none"}}>
                 <InstitutionSettings lang={lang}/>
             </div>
+            <UserAgreement 
+                isOpen={userAgreementOpen}
+                setOpen={setuserAgreementOpen}
+                onAccept={userAgreementOnAcceptFunction}
+                lang={lang}
+            />
         </div>
     );
 }

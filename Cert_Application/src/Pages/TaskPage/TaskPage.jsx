@@ -44,9 +44,16 @@ function importAll(r) {
 
 function TaskPage(props) {
 	
-	
 
+	const {slides} = props;
+	
 	//#region state
+	let [slideNumber, setSlideNumber] = useState(0);
+	let [canProceed, setCanProceed] = useState(true);
+	let [slideReached, setSlideReached] = useState(0);
+	let [shouldRedirect, setShouldRedirect] = useState(false);
+	let stream = null;
+	
 	let _answersSubmitted = []
 	for(let i = 0; i < props.slides.slides.length; i++){
 		if(slides.name == "Quiz"){
@@ -56,19 +63,9 @@ function TaskPage(props) {
 			_answersSubmitted.push([]);
 		}
 	}
-
 	
-
-	let [answersSubmitted, setAnswersSubmitted] = useState(_answersSubmitted);
-	let [slideNumber, setSlideNumber] = useState(0);
-	let [canProceed, setCanProceed] = useState(true);
-	let [slideReached, setSlideReached] = useState(0);
-	let [shouldRedirect, setShouldRedirect] = useState(false);
-	let stream = null;
-	
-	const {slides} = props;
-
 	//#endregion
+	let [answersSubmitted, setAnswersSubmitted] = useState(_answersSubmitted);
 
 	
 

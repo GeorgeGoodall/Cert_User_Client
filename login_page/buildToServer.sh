@@ -3,3 +3,4 @@ yarn build
 cd build
 mkdir -p "../../../../api/pages/Login_Page_Build"
 cp -r * "../../../../api/pages/Login_Page_Build"
+cd ../

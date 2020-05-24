@@ -5,7 +5,6 @@ import { FaWindowClose } from 'react-icons/fa';
 const UserAgreement = (props) => {
     const {lang, onAccept, setOpen} = props;
     return (
-
         <div
             style={{display: props.isOpen ? "block" : "none"}}
             className="userAgreement"
