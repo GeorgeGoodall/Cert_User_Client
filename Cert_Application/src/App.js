@@ -36,9 +36,12 @@ class App extends Component{
 		this.state = ({
 			"session":localStorage.getItem('session') != null ? localStorage.getItem('session') : 1,
 			"task":localStorage.getItem('task') != null ? localStorage.getItem('task') : 0,
+			"sessionReached":1,
+			"taskReached":1,
 			"test": localStorage.getItem('test') != null ? localStorage.getItem('test') : "Pretest",
 			"Language": localStorage.getItem('language') != null ? localStorage.getItem('language') : "English",
 			"tasks":getTasks(),
+			"baseName":"",
 		});
 
 		window.addEventListener("beforeunload",(function(event)
@@ -49,11 +52,70 @@ class App extends Component{
 
 	}
 
+	async getProgress(){
+		try{
+			const result = await axios.get('user/getProgress');
+			const {sessionNumber, taskNumber} = result.data.data[0];
+			this.setState(()=>{
+				return {
+					sessionReached: sessionNumber || 1,  
+					taskReached: taskNumber || 1
+				}
+			})
+		}
+		catch(error){
+			console.error(error);
+			alert("Could not load your progress from the server")
+			
+		}
+	}
+
+	async incrementProgress(){
+		const {task,taskReached,sessionReached,session, tasks} = this.state;
+		console.log(task,taskReached,sessionReached,session)
+		if(task+1 != taskReached || sessionReached != session){
+			return;
+		}
+
+		let nextSession = false;
+
+		let newTaskNumber = taskReached + 1;
+		let newSessionNumber = session;
+		let sessionId = "Session"+session.toString();
+		if(newTaskNumber >= tasks[sessionId].length){
+			newTaskNumber=1;
+			newSessionNumber++;
+		}
+
+		const data = {
+			taskNumber: newTaskNumber,
+			sessionNumber: newSessionNumber
+		}
+
+		axios.post('/user/changeProgress', data);
+		
+		this.setState(()=>{
+			return {
+				sessionReached: newSessionNumber || 1,  
+				taskReached: newTaskNumber || 1
+			}
+		})
+	}
+
 	async componentDidMount(){
 		const authData = await axios.get('/checkCookies');
+		if(authData.status.code == 404){
+			this.setState(()=>{
+				return {
+					"baseName":""
+				}
+			})
+		}
 		if(authData.data.institution == null || authData.data.user == null){
 			window.location.href = "/login"
 		}
+	
+		this.getProgress();
 	}
 
 	async getLatestTaskArray(){
@@ -106,8 +168,6 @@ class App extends Component{
 		const {session,task} = this.state;
 
 		let sessionId = "Session"+session.toString();
-		
-		console.log(sessionId, task)
 
 		let slides = this.state.tasks[sessionId][task];
 
@@ -115,7 +175,7 @@ class App extends Component{
 
 
 	  	return (
-	  		<Router basename="/cert">
+	  		<Router basename={this.state.baseName}>
 				<Switch>
 					<Route path="/(|home|settings)" component={() => <Header getTasks={this.getLatestTaskArray.bind(this)} windowSize={this.state.windowSize}/> } />
 					<Route path="/(Session)" component={() => <Header getTasks={this.getLatestTaskArray.bind(this)} session={session} windowSize={this.state.windowSize}/> } />
@@ -125,9 +185,9 @@ class App extends Component{
 			  	
 			  	<div>
 			  		<Switch>
-			  			<Route path="/(home|)" component={()=> <Home setSession={this.setSession.bind(this)} setTask={this.setTask.bind(this)} setTest={this.setTest.bind(this)}/> } />
-			  			<Route path="/Session" component={()=> <SessionMenu session={session} tasks={this.state.tasks[sessionId]} setTask={this.setTask.bind(this)} tests={this.tests}/> } />
-			  			<Route path="/task" component={()=> <TaskPage slides={slides} sessionNumber={this.state.session} /> } />
+			  			<Route path="/(home|)" component={()=> <Home setSession={this.setSession.bind(this)} setTask={this.setTask.bind(this)} setTest={this.setTest.bind(this)} sessionReached={this.state.sessionReached}/> } />
+			  			<Route path="/Session" component={()=> <SessionMenu session={session} tasks={this.state.tasks[sessionId]} setTask={this.setTask.bind(this)} tests={this.tests} sessionReached={this.state.sessionReached} taskReached={this.state.taskReached} /> } />
+			  			<Route path="/task" component={()=> <TaskPage slides={slides} sessionNumber={this.state.session} incrementProgress={this.incrementProgress.bind(this)}/> } />
 						<Route path="/test" component={()=> <TestPage type={this.state.test}/>} />
 						<Route path="/settings" component={()=> <Settings /> } />
 			  		</Switch>

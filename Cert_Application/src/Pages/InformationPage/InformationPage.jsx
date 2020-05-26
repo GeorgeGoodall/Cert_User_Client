@@ -17,7 +17,6 @@ class InformationPage extends Component{
 			"header": header,
 			"text": text,
 			"alexFace": props.alexImage,
-			"loadSlide": props.loadSlide,
 			"slideNumber": props.slideNumber,
 			"slideCount": props.slideCount,
 		})
@@ -35,10 +34,6 @@ class InformationPage extends Component{
 			"alexFace": nextProps.alexImage,
 			"slideNumber": nextProps.slideNumber,
 		})
-	}
-
-	changeSlide(nextSlideNumber){
-		this.state.loadSlide(nextSlideNumber)
 	}
 
 	render(){
@@ -78,7 +73,7 @@ class InformationPage extends Component{
 			size = 100;
 		}
 
-		const {header, text, loadSlide, slideNumber, slideCount, alexFace} = this.state;
+		const {header, text, slideNumber, slideCount, alexFace} = this.state;
 
 		return (
 			<React.Fragment>	

@@ -10,9 +10,13 @@ function Button(props){
 		inactive = props.button.inactive;
 		selected = props.button.selected;
 	}
-	else if(typeof props.inactive != "undefined" && typeof props.selected != "undefined"){
-		inactive = props.inactive;
-		selected = props.selected;	
+	else{
+		if(typeof props.inactive != "undefined"){
+			inactive = props.inactive;
+		}
+		if(typeof props.selected != "undefined"){
+			selected = props.selected;	
+		}
 	}
 
 	return (

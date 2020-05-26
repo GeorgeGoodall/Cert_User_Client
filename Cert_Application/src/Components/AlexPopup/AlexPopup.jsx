@@ -14,6 +14,9 @@ const AlexPopup = forwardRef((props, ref) => {
 	let [correctAlertHidden, setCorrectAlertHidden] = useState(true);
 	let [incorrectAlertHidden, setIncorrectAlertHidden] = useState(true);
 	let [shouldRedirect, setShouldRedirect] = useState(false);
+
+	console.log("render");
+	
 	if(props.correctAlertHidden == false)
 		setCorrectAlertHidden(props.correctAlertHidden);
 	if(props.incorrectAlertHidden == false)

@@ -47,7 +47,8 @@ const TestPage = (props) => {
 			answersSubmitted
 		}
 
-		const result = axios.post("/user/submitTaskData", data)
+		axios.post("/user/submitTaskData", data)
+		axios.post("/user/submitTaskData", data)
 		setShouldRedirect(true);
 	}
 

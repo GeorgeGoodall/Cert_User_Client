@@ -32,6 +32,7 @@ import {getEmotionStrings} from "../../config/tasks.js";
 import {language} from "../../config/tasks.js";
 
 import classes from "./TaskPage.css";
+import { FaDailymotion } from 'react-icons/fa';
 
 const images = {};
 importAll(require.context('../../Assets/Images/BatchImport/', false, /\.(png|jpe?g|svg|mp4)$/));
@@ -74,32 +75,32 @@ function TaskPage(props) {
 	let emotionsUsed = [];
 
 	const webcamError = (error = null) => {
+		console.trace();
 		webcamAlertRef.current.openAlerts(true);
 		setCanProceed(false);
 		setShouldRedirect(true);
+		props.incrementProgress();
+		
 	}
 	
 	useEffect(() => {
-		if(slides.requiresWebcam){
-			try { // Attempts to link to webcam and display webcam image on the webcam_display video
-			   if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) { 
+		// if(slides.requiresWebcam){
+		// 	try { // Attempts to link to webcam and display webcam image on the webcam_display video
+		// 	   if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) { 
 				   
-				   navigator.mediaDevices.getUserMedia({video: true})
-				   .then((_stream) => {
-						stream = _stream;   
-				   })
-				  .catch(function(error) { 
-						webcamError(error);
-						setCanProceed(false);
-				   });
-			   }
-		   } catch(err){ // If failed displays denied alert
-			   webcamAlertRef.current.openAlerts(true);
-			   setCanProceed(false);
-			   setShouldRedirect(true);
-		   }
+		// 		   navigator.mediaDevices.getUserMedia({video: true})
+		// 		   .then((_stream) => {
+		// 				stream = _stream;   
+		// 		   })
+		// 		  .catch(function(error) { 
+		// 				throw error
+		// 		   });
+		// 	   }
+		//    } catch(err){ // If failed displays denied alert
+		// 		webcamError(err)
+		//    }
 		   
-		}
+		// }
 	
 		document.addEventListener("keyup", _handleKeyUp);
 
@@ -493,18 +494,19 @@ function TaskPage(props) {
 	
 	const submitData = async() => {
 		const data={
-			answersSubmitted,
 			taskNumber: props.slides.index + 1,
+			sessionNumber: props.sessionNumber,
 			taskName: props.slides.name,
-			sessionNumber: props.sessionNumber
+			answersSubmitted
 		}
-		const result = axios.post("/user/submitTaskData", data);
+		
+
+		axios.post("/user/submitTaskData", data);
 	}
 
 	// if you finish a task, return to the session menu
 	if(slideNumber == slides.slides.length){
-
-		submitData();
+		props.incrementProgress();
 		return <Redirect to="/session" push />
 	}
 
