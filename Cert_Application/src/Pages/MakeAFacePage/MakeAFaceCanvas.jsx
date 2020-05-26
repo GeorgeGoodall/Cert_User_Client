@@ -338,6 +338,7 @@ const MakeAFaceCanvas = React.memo( (props) => {
             }
 
             if(i != selected){
+                console.log(currentIndex,cropStartX, cropStartY, cropWidth, cropHeight, xPosition, yPosition, width, height)
                 ctx.drawImage(
                     images[currentIndex],
                     cropStartX, cropStartY, cropWidth, cropHeight,

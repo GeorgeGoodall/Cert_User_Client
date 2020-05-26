@@ -12,7 +12,7 @@ import globalStyle from '../../Assets/css/globalStyles.css';
 import arrow from "../../Assets/Images/arrow.svg";
 import classNames from 'classnames';
 
-import {getTests} from '../../config/tasks.js';
+import {getTests, language} from '../../config/tasks.js';
 import Button from '../../Components/Button/Button.jsx';
 
 const images = {};
@@ -30,7 +30,7 @@ const TestPage = (props) => {
     console.log(slides);
 
     let _answersSubmitted = []
-	for(let i = 0; i < slides.task_array.length; i++){
+	for(let i = 0; i < slides.task_array.length - 5; i++){
 		_answersSubmitted.push(-1);	
 	}
 
@@ -68,8 +68,8 @@ const TestPage = (props) => {
 		
 		const currentSlide = {
 			params: {
-				header: "header test",
-				AlexSpeechBubble: "speech test"
+				header: language.testHeader,
+				AlexSpeechBubble: language.testBubble
 			}
 		}
 
@@ -86,18 +86,19 @@ const TestPage = (props) => {
 	}
 	
 	const [score, setscore] = useState(0);
-	const getOutroPage = () => {
-		const currentSlide = {
-			params: {
-				header: "",
-				AlexSpeechBubble: "You have finished the test! Close this alert to return to the menu. \n\nYou scored: " + {score} + "%"
-			}
+	const currentSlide = {
+		params: {
+			header: "",
+			AlexSpeechBubble: "You have finished the test! Close this alert to return to the menu. \n\nYou scored: " + 0 + "%"
 		}
+	}
+	const [outroSlide, setoutroSlide] = useState(currentSlide);
+	const getOutroPage = () => {
 
 		let currentPage = 	
 			<React.Fragment>
 				<InformationPage 
-					currentSlide={currentSlide}	
+					currentSlide={outroSlide}	
 				/>
 				<Button onClickHandler={nextSlide} text={"Return"}/>
 			</React.Fragment>
@@ -106,16 +107,24 @@ const TestPage = (props) => {
 		return currentPage;
 	}
 		
-	let correct = 0;
+	
     const setAnswerForSlide = (slideIndex, answer) => {
 		let temp = [...answersSubmitted];
 		const answerCopy = JSON.parse(JSON.stringify(answer));
 		temp[slideIndex] = [answerCopy];
 		setAnswersSubmitted(temp);
 		if(answer.correct){
-			correct++;
+			setscore(score+1);
+			let scorePercent = (score+1) * 100 / slides.task_array.length;
+			console.log(scorePercent.toFixed() + "%");
+			const currentSlide = {
+				params: {
+					header: "",
+					AlexSpeechBubble: "You have finished the test! Close this alert to return to the menu. \n\nYou scored: " + scorePercent.toFixed() + "%"
+				}
+			}
+			setoutroSlide(currentSlide);
 		}
-		setscore(correct / (slides.task_array.length));
 
 		nextSlide();
     }
@@ -124,11 +133,15 @@ const TestPage = (props) => {
 
         const {imageName, emotion} = slides.task_array[index];
         const image = images[imageName];
-        const answersSubmittedThisSlide = answersSubmitted[index]
+		const answersSubmittedThisSlide = answersSubmitted[index]
+		
+		let answerCallback = setAnswerForSlide;
+		if(index < 5)
+			answerCallback = nextSlide
 
         let currentPage = 	<TestQuestionPage
                                 slideNumber={index}
-                                submitAnswer={setAnswerForSlide}
+                                submitAnswer={answerCallback}
 								image={image}
 								emotion={emotion}
                             />

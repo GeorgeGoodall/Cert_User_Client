@@ -544,4 +544,7 @@ export const English = {
 	
 	settings: "Settings",
 	language: "Language",
+
+	testHeader: "Emotion recognition test",
+	testBubble: "In this task, you will be presented with lots of different photos of people. I would like you tell me what emotion you think this person is showing out of 5 options: happy, sad, scared, angry or no emotion. You should choose 'no emotion' when you think the person isn't showing any emotion. It might be quite easy for some faces but for other faces it might be quite difficult. The task will start with 5 practice tries."
 };

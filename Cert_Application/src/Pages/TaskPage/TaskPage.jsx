@@ -521,7 +521,7 @@ function TaskPage(props) {
 			<div className={classes.middleColumn}>
 				{
 					pages.map((page,key)=>{
-						const temp = <div className={classes.pageContainer} style={slideNumber == key ? {display: "block"} : {display: "none"}} key={key}>{page}</div>
+						const temp = <div className={classes.pageContainer} style={slideNumber == key ? {display: "flex"} : {display: "none"}} key={key}>{page}</div>
 						
 						return (temp);
 					})

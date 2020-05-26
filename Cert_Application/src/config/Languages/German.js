@@ -270,10 +270,10 @@ export const German = {
 		angry: "{0} ist wütend",
     },
 	HowDoTheyFeel: {
-		HowDoTheyFeel: "How do they feel?",//**
+		HowDoTheyFeel: "Wie fühlen sie sich?",
         HowDoTheyFeelHint: "Schau dir die Augen an\nSchau dir den Mund an",
 		KnowingHowSomeoneFeels: "Wissen wie jemand sich fühlt",
-        youWillSeeFacesShowingDifferentEmotions: "You will see faces showing different emotions.\nChoose how you think they feel",//**
+        youWillSeeFacesShowingDifferentEmotions: "Wissen wie jemand sich fühlt",
 	},
 	howDoesNameFeelString: "Wie fühlt sich {0} gerade?",
 	whoIs: {

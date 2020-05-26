@@ -9,8 +9,6 @@ function SessionMenu(props){
 
 	const {setTask, tasks, session} = props;
 
-	
-
 	return (
 		<div>
 			<h1 className={getHeaderClass(language.getSessionMenuHeader(session))}>{language.getSessionMenuHeader(session)}</h1>

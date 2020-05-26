@@ -5,7 +5,7 @@ const languageList = {
     },
     German: {
         nativeName: "Deutsche",
-        ageTypes: ["child", "adolescent"],
+        ageTypes: ["child"],
     },
     Dutch: {
         nativeName: "Nederlands",
