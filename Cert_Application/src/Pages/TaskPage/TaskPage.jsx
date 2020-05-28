@@ -84,23 +84,23 @@ function TaskPage(props) {
 	}
 	
 	useEffect(() => {
-		// if(slides.requiresWebcam){
-		// 	try { // Attempts to link to webcam and display webcam image on the webcam_display video
-		// 	   if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) { 
+		if(slides.requiresWebcam){
+			try { // Attempts to link to webcam and display webcam image on the webcam_display video
+			   if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) { 
 				   
-		// 		   navigator.mediaDevices.getUserMedia({video: true})
-		// 		   .then((_stream) => {
-		// 				stream = _stream;   
-		// 		   })
-		// 		  .catch(function(error) { 
-		// 				throw error
-		// 		   });
-		// 	   }
-		//    } catch(err){ // If failed displays denied alert
-		// 		webcamError(err)
-		//    }
+				   navigator.mediaDevices.getUserMedia({video: true})
+				   .then((_stream) => {
+						stream = _stream;   
+				   })
+				  .catch(function(error) { 
+						throw error
+				   });
+			   }
+		   } catch(err){ // If failed displays denied alert
+				webcamError(err)
+		   }
 		   
-		// }
+		}
 	
 		document.addEventListener("keyup", _handleKeyUp);
 

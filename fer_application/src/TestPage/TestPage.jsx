@@ -25,7 +25,7 @@ const TestPage = (props) => {
     console.log(slides);
 
     let _answersSubmitted = []
-	for(let i = 0; i < slides.task_array.length; i++){
+	for(let i = 0; i < slides.task_array.length - 5; i++){
 		_answersSubmitted.push(-1);	
 	}
 
@@ -132,10 +132,14 @@ const TestPage = (props) => {
         const {imageName, emotion} = slides.task_array[index];
         const image = images[imageName];
         const answersSubmittedThisSlide = answersSubmitted[index]
+		
+		let answerCallback = setAnswerForSlide;
+		if(index < 5)
+			answerCallback = nextSlide
 
         let currentPage = 	<TestQuestionPage
                                 slideNumber={index}
-                                submitAnswer={setAnswerForSlide}
+                                submitAnswer={answerCallback}
 								image={image}
 								emotion={emotion}
                             />
