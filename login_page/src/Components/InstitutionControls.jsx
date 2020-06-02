@@ -15,7 +15,9 @@ const InstitutionControls = (props) => {
     const [userLoginShowing, setUserLoginShowing] = useState(false);
     const [settingsShowing, setsettingsShowing] = useState(false);
 
-    const [LoggedIn, setLoggedIn] = useState(false);
+    const userLoggedIn = (authData.user != null && typeof authData.user != "undefined");
+
+    const [LoggedIn, setLoggedIn] = useState(userLoggedIn);
     const [userAgreementOpen, setuserAgreementOpen] = useState(false);
 
 
@@ -88,7 +90,7 @@ const InstitutionControls = (props) => {
                 <CreateNewUserForm key={createNewUserShowing} idLable={lang.id} onCreateUser={onCreateUser} lang={lang}/>
             </div>
             <div className="institutionControlsTab" style={userLoginShowing ? {display: "block"} : {display: "none"}}>
-                <LoginForm idLable={lang.id} APILoginCall={'/user/login'} setSpinner={setSpinner} onLoginCallback={onLoginCallback} authData={authData.user} lang={lang}/>
+                <LoginForm idLable={lang.id} APILoginCall={'/user/login'} setSpinner={setSpinner} onLoginCallback={onLoginCallback} authData={authData.user} lang={lang} loggedIn={LoggedIn} setLoggedIn={setLoggedIn}/>
                 <div className={"userControls"} style={{display: LoggedIn ? "block" : "none"}}> 
                     <div onClick={() => setuserAgreementOpen(true)} className="red-button">{lang.launchCert}</div>
                 </div>

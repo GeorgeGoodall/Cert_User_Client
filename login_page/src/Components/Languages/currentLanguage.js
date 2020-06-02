@@ -13,10 +13,14 @@ function importAll(r) {
 let currentLanguage = languages.English;
 
 const getCurrentLanguage = () => {
-    return currentLanguage;
+  let _currentLang = localStorage.getItem("language");
+  if(Object.keys(languages).includes(_currentLang))
+    setCurrentLanguage(_currentLang)
+  return currentLanguage;
 }
 
 const setCurrentLanguage = (language) => {
+    localStorage.setItem("language", language);
     currentLanguage=languages[language];
 }
 

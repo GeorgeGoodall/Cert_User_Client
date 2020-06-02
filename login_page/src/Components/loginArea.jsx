@@ -10,6 +10,7 @@ const LoginArea = (props) => {
 
   let [spinner, setSpinner] = useState(false);
   const [authData, setauthData] = useState({institution: null, user: null});
+  const [loggedIn, setloggedIn] = useState(false);
 
   useEffect(async()=>{
     getAuthData();
@@ -20,6 +21,9 @@ const LoginArea = (props) => {
 
   const getAuthData = async() => {
     const _authData = await axios.get("/checkCookies");
+    if(_authData.data.institution){
+      setloggedIn(true)
+    }
     setauthData(_authData.data);
   }
 
@@ -47,6 +51,8 @@ const LoginArea = (props) => {
             onLoginCallback={onLoginCallback}
             authData={authData.institution}
             lang={lang}
+            setLoggedIn={setloggedIn}
+            loggedIn={loggedIn}
         /> 
         {institutionControls}      
     </div>

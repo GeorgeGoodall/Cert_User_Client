@@ -3,17 +3,16 @@ import {postData} from "./helperFunctions";
 
 
 const LoginForm = (props) => {
-    const {idLable, APILoginCall, setSpinner, onLoginCallback, lang} = props;
+    const {idLable, APILoginCall, setSpinner, onLoginCallback, lang, loggedIn, setLoggedIn, authData} = props;
 
-    let [loggedIn, setLoggedIn] = useState(props.isLoggedIn || false);
+    
     
     let [feedbackShowing, setFeedbackShowing] = useState(false);
     const [createNewUserShowing, setCreateNewUserShowing] = useState(false);
     const [userLoginShowing, setUserLoginShowing] = useState(false);
     
     useEffect(() => {
-        if(props.authData){
-            setLoggedIn(true)
+        if(loggedIn && authData){
             
             let loggedInText = (
                 <React.Fragment>
@@ -96,7 +95,7 @@ const LoginForm = (props) => {
                 </div>
                 <div className={"dropdownContainer floatsRight"}>
                     <div className="dropdownLable">{lang.password}:</div>
-                    <input className="rightValue" type="password" ref={passRef}/>
+                    <input className="rightValue" type="password" ref={passRef} onKeyUp={(e)=>{if(e.keyCode == 13){onSubmit()}}}/>
                 </div>
                 <button className={"button"} onClick={onSubmit}>{lang.submit}</button>
             </div>

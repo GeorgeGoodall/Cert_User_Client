@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import classes from "./Settings.css";
 import Dropdown from 'react-bootstrap/Dropdown';
 
@@ -12,15 +12,17 @@ const Settings = (props) => {
     let langnuageDropdownRef = useRef();
     let ageDropdownRef = useRef();
 
+
     let languageChange = (e,res) => {
         setLanguage(langnuageDropdownRef.current.value)
         props.getTasks();
     }
-
+    
     let ageChange = (e,res) => {
         setAgeType(ageDropdownRef.current.value);
         props.getTasks();
     }
+
 
     let language = getLanguage();
     let selectedLanguage = language.name;

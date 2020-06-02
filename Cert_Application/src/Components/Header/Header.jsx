@@ -31,6 +31,13 @@ class Header extends Component{
 		});
 	}
 
+	shouldComponentUpdate(nextProps){
+		if(this.state.session != nextProps.session)
+			return true;
+		else if(this.state.task != nextProps.task)
+			return true;
+	}
+
 	componentDidMount() {
 	    document.addEventListener('mouseup', this.handleClickOutside);
 	}
@@ -87,14 +94,6 @@ class Header extends Component{
 			<React.Fragment>
 				<div ref={this.setWrapperRef} className={headerClassName}>
 				    <Nav session={session} task={task} getTasks={this.props.getTasks}/>
-				    {/* <div className={classes.banner}>
-					    <UniLogo className={classes.logo}/>
-					    <div>
-					    <h1 className={classes.siteTitle}>{title}</h1>
-						<h2 className={classes.pageTitle}>{subHeader}</h2>
-					    </div>
-						<div className={navButtonClassName} onClick={()=>{this.setState({"headerActive":true})}}></div>
-					</div> */}
 				</div>
 			</React.Fragment>
 		);		

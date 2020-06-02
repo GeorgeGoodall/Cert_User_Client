@@ -1,6 +1,6 @@
 import Dropdown from "react-dropdown";
 import LoginArea from "./loginArea";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "react-dropdown/style.css";
 import "./style.css";
 
@@ -9,16 +9,24 @@ import getCurrentLanguage, {
   setCurrentLanguage,
 } from "./Languages/currentLanguage";
 
+
 const Login = () => {
   const [institutionLoggedIn, setInstitutionLoggedIn] = useState(false);
   const [lang, setlang] = useState(getCurrentLanguage());
 
   const insLoginCallback = () => {};
 
+  useEffect(()=>{
+    //get the language from cookies
+  },[])
+
   const onLanguageChange = (value) => {
+    // set the language
     setCurrentLanguage(value.value)
     setlang(getCurrentLanguage());
   }
+
+  console.log(lang)
 
   return (
     <div>
@@ -30,7 +38,7 @@ const Login = () => {
             className="dropdown"
             style={{ float: "left" }}
             options={languageArray}
-            value={"English"} /* ToDo: get this from cookie */ 
+            value={lang.native} /* ToDo: get this from cookie */ 
             placeholder={lang.selectALanguage}
             onChange={onLanguageChange}
           />

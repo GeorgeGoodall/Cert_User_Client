@@ -114,6 +114,9 @@ class App extends Component{
 		if(authData.data.institution == null || authData.data.user == null){
 			window.location.href = "/login"
 		}
+		else{
+			localStorage.setItem("username", authData.data.user.name)
+		}
 	
 		this.getProgress();
 	}
@@ -171,7 +174,7 @@ class App extends Component{
 
 		let slides = this.state.tasks[sessionId][task];
 
-		console.log(slides)
+		console.log("render")
 
 
 	  	return (

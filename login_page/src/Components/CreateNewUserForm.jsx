@@ -1,4 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react';
+import Dropdown from "react-dropdown";
 import axios from 'axios';
 
 const CreateNewUserForm = (props) => {
@@ -6,6 +7,7 @@ const CreateNewUserForm = (props) => {
 
     let passRef = useRef();
     let repPassRef = useRef();
+    let ageTypeRef = useRef();
 
     const [newUserId, setnewUserId] = useState("");
     const [feedbackShowing, setfeedbackShowing] = useState(false);
@@ -28,7 +30,8 @@ const CreateNewUserForm = (props) => {
 
         let data = {
             id: newUserId,
-            password: passRef.current.value
+            password: passRef.current.value,
+            ageType: ageTypeRef.current.state.selected.value
         }
 
         try{
@@ -41,6 +44,8 @@ const CreateNewUserForm = (props) => {
         catch(err){
             console.error(err);
         }
+
+        console.log()
         
         
     }
@@ -59,6 +64,16 @@ const CreateNewUserForm = (props) => {
                 <div className={"dropdownContainer floatsRight"}>
                     <div className="dropdownLable">{lang.confirmPassword}:</div>
                     <input className="rightValue" type="password" ref={repPassRef}/>
+                </div>
+                <div className={"dropdownContainer floatsRight"}>
+                    <div className="dropdownLable">{"Age Type"}:</div>
+                    <Dropdown
+                        className="rightValue"
+                        options={[{label: 'Adolescent', value: 'Adolescent'},{label: 'Child', value: 'Child'}]}
+                        value={0}
+                        placeholder={'Select a age type'}
+                        ref={ageTypeRef}  
+                    />
                 </div>
                 <button className={"button"} onClick={submit}>{lang.submit}</button>
                 <div style={!feedbackShowing ? {display: "none"} : {display: "block"}}>
