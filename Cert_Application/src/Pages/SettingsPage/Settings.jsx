@@ -26,7 +26,9 @@ const Settings = (props) => {
 
     let language = getLanguage();
     let selectedLanguage = language.name;
-    let selectedAgeType = getAgeType();
+    let selectedAgeType = getAgeType().toLowerCase();
+
+    
 
     return (
         <div className={classes.container}>

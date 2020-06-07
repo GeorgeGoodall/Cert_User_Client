@@ -14,6 +14,10 @@ import Settings from "./Pages/SettingsPage/Settings";
 
 import "./Assets/css/globalStyles.css";
 
+import {setAgeType, getAgeType} from "./config/language";
+
+require('dotenv').config();
+
 function saveStateToStorage(state){
 	
 	try {
@@ -41,7 +45,6 @@ class App extends Component{
 			"test": localStorage.getItem('test') != null ? localStorage.getItem('test') : "Pretest",
 			"Language": localStorage.getItem('language') != null ? localStorage.getItem('language') : "English",
 			"tasks":getTasks(),
-			"baseName":"",
 		});
 
 		window.addEventListener("beforeunload",(function(event)
@@ -55,7 +58,7 @@ class App extends Component{
 	async getProgress(){
 		try{
 			const result = await axios.get('user/getProgress');
-			const {sessionNumber, taskNumber} = result.data.data[0];
+			const {sessionNumber, taskNumber} = result.data.data[0] || {sessionNumber: 1, taskNumber: 1};
 			this.setState(()=>{
 				return {
 					sessionReached: sessionNumber || 1,  
@@ -104,18 +107,12 @@ class App extends Component{
 
 	async componentDidMount(){
 		const authData = await axios.get('/checkCookies');
-		if(authData.status.code == 404){
-			this.setState(()=>{
-				return {
-					"baseName":""
-				}
-			})
-		}
 		if(authData.data.institution == null || authData.data.user == null){
 			window.location.href = "/login"
 		}
 		else{
 			localStorage.setItem("username", authData.data.user.name)
+			setAgeType(authData.data.user.ageType)
 		}
 	
 		this.getProgress();
@@ -176,9 +173,10 @@ class App extends Component{
 
 		console.log("render")
 
+		const baseName = process.env.REACT_APP_BASE_NAME;
 
 	  	return (
-	  		<Router basename={this.state.baseName}>
+	  		<Router basename={baseName}>
 				<Switch>
 					<Route path="/(|home|settings)" component={() => <Header getTasks={this.getLatestTaskArray.bind(this)} windowSize={this.state.windowSize}/> } />
 					<Route path="/(Session)" component={() => <Header getTasks={this.getLatestTaskArray.bind(this)} session={session} windowSize={this.state.windowSize}/> } />

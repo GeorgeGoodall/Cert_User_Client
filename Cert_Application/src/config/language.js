@@ -46,6 +46,7 @@ function getLanguage() {
 
 function setAgeType(_ageType){
     const name = localStorage.getItem("username");
+    console.log(_ageType)
     if(_ageType != null){
         try {
             localStorage.setItem(name+'_ageType', _ageType);
