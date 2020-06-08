@@ -1,5 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {postData} from "./helperFunctions";
+import Axios from 'axios';
 
 
 const LoginForm = (props) => {
@@ -24,11 +25,11 @@ const LoginForm = (props) => {
         }
     }, [props.authData, props.lang]);
 
-    const logout = () => {
+    const logout = async () => {
         setLoggedIn(false);
-        //onLoginCallback(false);
         setFeedback("");
-        // ToDo: delete cookies
+        await Axios.post("/deleteCookies", props.cookiesToDelete);
+        onLoginCallback();
     }
     
     

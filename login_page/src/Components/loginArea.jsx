@@ -25,6 +25,8 @@ const LoginArea = (props) => {
       setloggedIn(true)
     }
     setauthData(_authData.data);
+    console.log(_authData.data);
+    console.log("done")
   }
 
   const onLoginCallback = (status) => {
@@ -32,6 +34,7 @@ const LoginArea = (props) => {
   };
 
   let institutionControls = <React.Fragment></React.Fragment>;
+  console.log(authData)
   if(authData.institution != null){
     institutionControls = (
       <div className={"userLogin"}>
@@ -49,6 +52,11 @@ const LoginArea = (props) => {
             APILoginCall={"/institution/login"}
             setSpinner={setSpinner}
             onLoginCallback={onLoginCallback}
+            cookiesToDelete={{
+              admin: false,
+              institution: true,
+              user: true
+            }}
             authData={authData.institution}
             lang={lang}
             setLoggedIn={setloggedIn}

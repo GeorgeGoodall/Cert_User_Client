@@ -12,6 +12,7 @@ const CreateNewUserForm = (props) => {
     const [newUserId, setnewUserId] = useState("");
     const [feedbackShowing, setfeedbackShowing] = useState(false);
     const [feedback, setfeedback] = useState("");
+    const [ageTypes, setageTypes] = useState([{label: 'Adolescent', value: 'Adolescent'},{label: 'Child', value: 'Child'}]);
 
     const getNewID = async() => {
         let result = await axios.get("/institution/getUserName");
@@ -20,6 +21,7 @@ const CreateNewUserForm = (props) => {
 
     useEffect(()=>{   
         getNewID();
+
     },[])
 
     const submit = async() => {
@@ -69,7 +71,7 @@ const CreateNewUserForm = (props) => {
                     <div className="dropdownLable">{"Age Type"}:</div>
                     <Dropdown
                         className="rightValue"
-                        options={[{label: 'Adolescent', value: 'Adolescent'},{label: 'Child', value: 'Child'}]}
+                        options={ageTypes}
                         value={0}
                         placeholder={'Select a age type'}
                         ref={ageTypeRef}  
