@@ -7,7 +7,7 @@ import axios from "axios";
 import { Redirect } from 'react-router-dom'
 
 
-const InstitutionControls = (props) => {
+const InstitutionControls = React.memo((props) => {
 
     const {setSpinner, lang, authData} = props;
 
@@ -19,10 +19,6 @@ const InstitutionControls = (props) => {
 
     const [LoggedIn, setLoggedIn] = useState(userLoggedIn);
     const [userAgreementOpen, setuserAgreementOpen] = useState(false);
-
-
-
-
     
     const loginTabClick = (tabIndex) => {
         setUserLoginShowing(false)
@@ -120,6 +116,15 @@ const InstitutionControls = (props) => {
             />
         </div>
     );
-}
+},
+(prevProps, nextProps)=>{
+    console.log(prevProps, nextProps)
+    if(prevProps.authData.user == null && nextProps.authData.user != null || prevProps.authData.user != null && nextProps.authData.user == null){
+        return true;
+    }
+    if(prevProps.authData.user != null && nextProps.authData.user != null){
+        return prevProps.authData.user.name == nextProps.authData.user.name
+    }
+})
 
 export default InstitutionControls;

@@ -12,6 +12,7 @@ const CreateNewUserForm = (props) => {
     const [newUserId, setnewUserId] = useState("");
     const [feedbackShowing, setfeedbackShowing] = useState(false);
     const [feedback, setfeedback] = useState("");
+    const [feedbackIsError, setfeedbackIsError] = useState(false);
     const [ageTypes, setageTypes] = useState([{label: 'Adolescent', value: 'Adolescent'},{label: 'Child', value: 'Child'}]);
 
     const getNewID = async() => {
@@ -23,12 +24,37 @@ const CreateNewUserForm = (props) => {
         getNewID();
 
     },[])
-
+    
     const submit = async() => {
+        const re = /[A-Z]+/;
+        const re2 = /[a-z]+/;
+        const re3 = /[0-9]+/;
         if(passRef.current.value != repPassRef.current.value){
             setfeedback(lang.yourPasswordsDontMatch);
             setfeedbackShowing(true);
+            setfeedbackIsError(true);
+            return;
         }
+        else if(passRef.current.value.length < 5){
+            setfeedback(lang.passwordNotLongEnough);
+            setfeedbackShowing(true);
+            setfeedbackIsError(true);
+            return;
+        }
+        else if(!re.test(passRef.current.value) || !re2.test(passRef.current.value) || !re3.test(passRef.current.value)){
+            setfeedback(lang.passwordNotDiverse);
+            setfeedbackShowing(true);
+            setfeedbackIsError(true);
+            return;
+        }
+        else if(!ageTypeRef.current.state.selected.value){
+            setfeedback(lang.unspecifiedAgeType);
+            setfeedbackShowing(true);
+            setfeedbackIsError(true);
+            return;
+        }
+
+        // more data handling
 
         let data = {
             id: newUserId,
@@ -44,11 +70,11 @@ const CreateNewUserForm = (props) => {
             }
         }
         catch(err){
+            setfeedback(err.response.data.error)
+            setfeedbackShowing(true);
+            setfeedbackIsError(true);
             console.error(err);
-        }
-
-        console.log()
-        
+        }        
         
     }
 
@@ -79,7 +105,7 @@ const CreateNewUserForm = (props) => {
                 </div>
                 <button className={"button"} onClick={submit}>{lang.submit}</button>
                 <div style={!feedbackShowing ? {display: "none"} : {display: "block"}}>
-                    <div className={"LoginFeedback"}>
+                    <div className={"LoginFeedback"} style={feedbackIsError ? {color: "red"} : {color : "black"}}>
                         {feedback}
                     </div>
                 </div>

@@ -12,18 +12,32 @@ const ChangePassword = (props) => {
     const repeatRef = useRef() 
     
     const onSubmit = async () => {
+        const re = /[A-Z]+/;
+        const re2 = /[a-z]+/;
+        const re3 = /[0-9]+/;
         if(newRef.current.value != repeatRef.current.value){
-            alert("passwords dont match");
-            oldRef.current.value = "";
-            newRef.current.value = "";
-            repeatRef.current.value = "";
+            alert(lang.yourPasswordsDontMatch);
+            return;
+        }
+        else if(newRef.current.value.length < 5){
+            alert(lang.passwordNotLongEnough);
+            return;
+        }
+        else if(!re.test(newRef.current.value) || !re2.test(newRef.current.value) || !re3.test(newRef.current.value)){
+            alert(lang.passwordNotDiverse);
             return;
         }
         const data={
             oldPassword: oldRef.current.value,
             newPassword: newRef.current.value
         }
-        const result = await axios.post("/institution/changePassword",data);
+        try{
+            const result = await axios.post("/institution/changePassword",data);
+        }
+        catch(e){
+            console.log(e.response)
+            alert(e.response.data.error)
+        }
     }
 
 
