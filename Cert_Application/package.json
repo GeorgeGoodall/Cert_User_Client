@@ -19,7 +19,7 @@
     "babel-plugin-named-asset-import": "^0.3.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-react-app": "^9.1.1",
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "bootstrap": "^4.4.1",
     "bootstrap-loader": "^3.0.4",
     "camelcase": "^5.3.1",
